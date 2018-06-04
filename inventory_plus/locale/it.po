@@ -1,0 +1,63 @@
+# ITALIAN LOCALIZATION FILE FOR INVENTORY PLUS.
+# Copyright (C) 2018 Brett O'Donnell http://cornernote.github.io
+# This file is distributed under the same license as the Inventory Plus package.
+# Hamlet <h4mlet@riseup.net>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Inventory Plus\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-03 23:17+0100\n"
+"PO-Revision-Date: 2018-03-03 23:00+0100\n"
+"Last-Translator: Hamlet <h4mlet@riseup.net>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.6.10\n"
+
+#: init.lua home_gui.lua
+msgid "Back"
+msgstr "Indietro"
+
+#: init.lua
+msgid "NO PLAYER INVENTORY FOUND!"
+msgstr "L'INVENTARIO DEL PERSONAGGIO NON È STATO TROVATO"
+
+#: init.lua
+msgid "Craft"
+msgstr "Assemb."
+
+#: init.lua
+msgid "Creative"
+msgstr "Creativa"
+
+#: init.lua
+msgid "sethome found, adding home_gui to inventory plus"
+msgstr "sethome trovato, home_gui viene aggiunta a Inventory Plus"
+
+#: home_gui.lua
+msgid "Set Home"
+msgstr "Imp. casa"
+
+#: home_gui.lua
+msgid "Go Home"
+msgstr "And. casa"
+
+#: home_gui.lua
+msgid "Spawn"
+msgstr "Origine"
+
+#: home_gui.lua
+msgid "Home set to:"
+msgstr "Casa impostata a:"
+
+#: home_gui.lua
+msgid "Home Pos"
+msgstr "Pos. casa"
+
+#: home_gui.lua
+msgid "Go to Spawn"
+msgstr "And. origine"

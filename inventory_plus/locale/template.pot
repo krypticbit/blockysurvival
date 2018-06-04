@@ -1,0 +1,62 @@
+# LANGUAGE_NAME LOCALIZATION FILE FOR INVENTORY PLUS.
+# Copyright (C) 2018 Brett O'Donnell http://cornernote.github.io
+# This file is distributed under the same license as the Inventory Plus package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Inventory Plus\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-03 23:17+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: init.lua home_gui.lua
+msgid "Back"
+msgstr ""
+
+#: init.lua
+msgid "NO PLAYER INVENTORY FOUND!"
+msgstr ""
+
+#: init.lua
+msgid "Craft"
+msgstr ""
+
+#: init.lua
+msgid "Creative"
+msgstr ""
+
+#: init.lua
+msgid "sethome found, adding home_gui to inventory plus"
+msgstr ""
+
+#: home_gui.lua
+msgid "Set Home"
+msgstr ""
+
+#: home_gui.lua
+msgid "Go Home"
+msgstr ""
+
+#: home_gui.lua
+msgid "Spawn"
+msgstr ""
+
+#: home_gui.lua
+msgid "Home set to:"
+msgstr ""
+
+#: home_gui.lua
+msgid "Home Pos"
+msgstr ""
+
+#: home_gui.lua
+msgid "Go to Spawn"
+msgstr ""

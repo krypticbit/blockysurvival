@@ -1,0 +1,8 @@
+default
+bucket
+doors
+stairs
+xpanes
+fire?
+oresplus?
+moreblocks?
