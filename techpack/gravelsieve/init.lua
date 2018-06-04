@@ -179,7 +179,7 @@ local function add_gravel_to_dst(meta, inv)
 	if (gravel_cnt % 2) == 0 then  -- gravel or sieved gravel?
 		inv:add_item("dst", ItemStack("default:gravel"))        -- add to dest
 	else
-		inv:add_item("dst", ItemStack("gravelsieve:sieved_gravel")) -- add to dest
+		inv:add_item("dst", ItemStack("default:sand")) -- add to dest
 	end
 end
 
@@ -452,7 +452,7 @@ minetest.register_craft({
 	output = "gravelsieve:sieve",
 	recipe = {
 		{"group:wood", "",                      "group:wood"},
-		{"group:wood", "default:steel_ingot",   "group:wood"},
+		{"group:wood", "default:steel_block",   "group:wood"},
 		{"group:wood", "",                      "group:wood"},
 	},
 })
@@ -460,23 +460,10 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "gravelsieve:auto_sieve",
 	recipe = {
-		{"gravelsieve:sieve", "default:mese_crystal",  "default:mese_crystal"},
+		{"group:wood", "gravelsieve:sieve", "group:wood"},
+		{"group:wood", "default:diamond", "group:wood"},
+		{"group:wood", "default:mese_block", "group:wood"}
 	},
-})
-
-minetest.register_craft({
-	output = "gravelsieve:compressed_gravel",
-	recipe = {
-		{"gravelsieve:sieved_gravel", "gravelsieve:sieved_gravel"},
-		{"gravelsieve:sieved_gravel", "gravelsieve:sieved_gravel"},
-	},
-})
-
-minetest.register_craft({
-	type = "cooking",
-	output = "default:cobble",
-	recipe = "gravelsieve:compressed_gravel",
-	cooktime = 10,
 })
 
 minetest.register_alias("gravelsieve:sieve", "gravelsieve:sieve3")
