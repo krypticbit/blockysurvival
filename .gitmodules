@@ -1,0 +1,3 @@
+[submodule "formspeclib"]
+	path = formspeclib
+	url = https://github.com/luk3yx/formspeclib
