@@ -449,11 +449,11 @@ minetest.register_node("gravelsieve:compressed_gravel", {
 })
 
 minetest.register_craft({
-	output = "gravelsieve:sieve",
+	output = "gravelsieve:sieve3",
 	recipe = {
-		{"group:wood", "",                      "group:wood"},
-		{"group:wood", "default:steel_block",   "group:wood"},
-		{"group:wood", "",                      "group:wood"},
+		{"group:wood", "",                    "group:wood"},
+		{"group:wood", "default:steel_block", "group:wood"},
+		{"group:wood", "",                    "group:wood"},
 	},
 })
 
