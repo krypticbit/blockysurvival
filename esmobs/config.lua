@@ -21,7 +21,7 @@ esmobs.bad_npc = true;
 ]]
 -- if set to given number, You will get all the mobs in the set mob package.  (see below for configuration)
 
-esmobs.MOB_SETTING = 5;
+esmobs.MOB_SETTING = 1;
 
 
 -----------------------------------------------------------------------------
