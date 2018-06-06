@@ -1,0 +1,5 @@
+name = "Dog",
+type = "Animal",
+hp = "55",
+drops = "raw_meat",
+info = "Right click to command.",

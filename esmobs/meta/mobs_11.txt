@@ -1,0 +1,5 @@
+name = "Bone Monster",
+type = "Monster",
+hp = "17-35",
+drops = "steelblock, bones",
+info = "They shoot lethal bones.  Mese Monster's Brother!",

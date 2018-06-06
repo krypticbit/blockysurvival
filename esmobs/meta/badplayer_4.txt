@@ -1,0 +1,5 @@
+name = "Army Guy",
+type = "Un-Friendly NPC",
+hp = "37-82",
+drops = "sword, pick, steel_ingot",
+info = "Tall, gets stuck at times. 3=dmg.",

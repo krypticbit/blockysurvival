@@ -1,0 +1,5 @@
+name = "Chicken",
+type = "Animal",
+hp = "24",
+drops = "feather, chicken raw",
+info = "Follows wheat seed, right click to get egg.",
