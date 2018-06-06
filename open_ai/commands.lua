@@ -1,6 +1,6 @@
-minetest.register_chatcommand("spawn", {
+minetest.register_chatcommand("spawnmob", {
 	params = "<mob>",
-	description = "Spawn x amount of a mob, used as /spawn sheep 10 or /spawn fish for one",
+	description = "Spawn x amount of a mob, used as /spawnmob sheep 10 or /spawnmob fish for one",
 	privs = {server = true},
 	func = function( name, mob)
 		--local vars
@@ -22,7 +22,7 @@ minetest.register_chatcommand("spawn", {
 		end
 		--explain formatting
 		if amount == nil or str == nil then
-			minetest.chat_send_player(name, "Format as /spawn mobname 20 or /spawn mobname")
+			minetest.chat_send_player(name, "Format as /spawnmob mobname 20 or /spawnmob mobname")
 		end
 		
 		--add amount of entities if registered
