@@ -429,7 +429,7 @@ register_hard_node("coalstone_tile", "Coal Stone Tile")
 register_hard_node("desertstone_tile", "Desert Stone Tile")
 register_hard_node("hard_clay", "Hardened Clay")
 register_hard_node("moonbrick", "Moon Brick")
-register_hard_node("stone_tile", "Stone Tile")
+--register_hard_node("stone_tile", "Stone Tile") Conflicts with moreblocks
 register_hard_node("stone_rune", "Runestone")
 register_hard_node("packed_ice", "Packed Ice", {
 	groups = {cracky=1, puts_out_fire=1, slippery=3},
