@@ -47,6 +47,7 @@ open_ai.register_mob("fish",{
 	rides_cart  = false,
 	hostile     = false,
 	spawn_node  = "default:water_source",
+	spawn_node_percentage = 20,
 	
 	--safari ball variables
 	ball_color = "ee7600",--color in hex, can be any color
@@ -129,6 +130,7 @@ open_ai.register_mob("big_shadow",{
 	rides_cart  = false,
 	hostile     = false,
 	spawn_node  = "default:water_source",
+	spawn_node_percentage = 70,
 	
 	--safari ball variables
 	ball_color = "ee7600",--color in hex, can be any color
@@ -213,6 +215,7 @@ open_ai.register_mob("sheep",{
 	rides_cart  = true,
 	hostile     = false,
 	spawn_node  = "default:dirt_with_grass",
+	spawn_noe_percentage = 40,
 	
 	--safari ball variables
 	ball_color = "0000ff",--color in hex, can be any color 
@@ -308,6 +311,7 @@ open_ai.register_mob("horse",{
 	mob_chair   = "open_ai:saddle", --what you use to sit on the mob, doubles the speed it can go
 	chair_textures = {"equine2-saddle.png"}, --changes the mob texture to this when wearing a saddle
 	spawn_node  = "default:dirt_with_grass",
+	spawn_node_percentage = 60,
 	
 	--safari ball variables
 	ball_color = "551a8b",--color in hex, can be any color 
@@ -506,6 +510,7 @@ open_ai.register_mob("slime",{
 	rides_cart  = true,
 	hostile     = false,
 	spawn_node  = "default:dirt_with_grass",
+	spawn_node_percentage = 90,
 	
 	--safari ball variables
 	ball_color = "32CD32",--color in hex, can be any color 
