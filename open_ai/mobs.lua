@@ -560,7 +560,7 @@ open_ai.register_mob("slime",{
 })
 
 
---a twitch viewer
+--[[a twitch viewer
 open_ai.register_mob("jonte333",{
 	--mob physical variables
 	--			   {keep left right forwards and backwards equal, will not work correctly if not equal
@@ -1034,4 +1034,4 @@ open_ai.register_mob("giant",{
 	on_jump = function(self,dtime)
 		--print("user defined jump santa!")
 	end,
-})
+})]]--
