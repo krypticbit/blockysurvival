@@ -1,0 +1,5 @@
+name = "Sand Monster",
+type = "Monster",
+hp = "17-35",
+drops = "desert sand",
+info = "fast and weak",

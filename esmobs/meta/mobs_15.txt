@@ -1,0 +1,5 @@
+name = "Dirt Monster",
+type = "Monster",
+hp = "30-50",
+drops = "dirt",
+info = "Will follow viola!",

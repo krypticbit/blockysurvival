@@ -1,0 +1,5 @@
+name = "Nerd",
+type = "Un-Friendly NPC",
+hp = "49-85",
+drops = "sword, sapling, dirt",
+info = "Damage =3 Slow walker",
