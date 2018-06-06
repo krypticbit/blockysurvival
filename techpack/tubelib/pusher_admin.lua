@@ -101,7 +101,7 @@ local function keep_running(pos, elapsed)
 end
 
 minetest.register_node("tubelib:pusher_admin", {
-	description = "Tubelib Pusher",
+	description = "Tubelib Admin Pusher",
 	tiles = {
 		-- up, down, right, left, back, front
 		'tubelib_pusher1.png',
@@ -115,9 +115,9 @@ minetest.register_node("tubelib:pusher_admin", {
 	after_place_node = function(pos, placer)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("player_name", placer:get_player_name())
-		local number = tubelib.add_node(pos, "tubelib:pusher") -- <<=== tubelib
+		local number = tubelib.add_node(pos, "tubelib:pusher_admin") -- <<=== tubelib
 		meta:set_string("number", number)
-		meta:set_string("infotext", "Pusher "..number..": stopped")
+		meta:set_string("infotext", "Admin Pusher "..number..": stopped")
 	end,
 
 	on_rightclick = function(pos, node, clicker)
@@ -143,7 +143,7 @@ minetest.register_node("tubelib:pusher_admin", {
 
 
 minetest.register_node("tubelib:pusher_admin_active", {
-	description = "Tubelib Pusher",
+	description = "Tubelib Admin Pusher",
 	tiles = {
 		-- up, down, right, left, back, front
 		{
