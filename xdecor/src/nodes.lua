@@ -430,6 +430,16 @@ register_hard_node("desertstone_tile", "Desert Stone Tile")
 register_hard_node("hard_clay", "Hardened Clay")
 register_hard_node("moonbrick", "Moon Brick")
 --register_hard_node("stone_tile", "Stone Tile") Conflicts with moreblocks
+
+minetest.register_lbm({
+	name = "xdecor:cleanup_stone_tile",
+	nodenames = "xdecor:stone_tile",
+	run_at_every_load = false,
+	action = function(pos, node)
+		minetest.set_node(pos, {name = "moreblocks:stone_tile"})
+	end
+})
+
 register_hard_node("stone_rune", "Runestone")
 register_hard_node("packed_ice", "Packed Ice", {
 	groups = {cracky=1, puts_out_fire=1, slippery=3},
