@@ -1,5 +1,0 @@
-name = "Charlie",
-type = "Un-Friendly NPC",
-hp = "99-140",
-drops = "diamond sword, stick, apple",
-info = "Damage =6 Run = 4!!",

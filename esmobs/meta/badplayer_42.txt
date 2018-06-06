@@ -1,5 +1,0 @@
-name = "Jasmine",
-type = "UN-Friendly NPC",
-hp = "277-290",
-drops = "diamond sword, infinium goo, water flowing",
-info = "Right click to have as team player or with gold_lump for trade",

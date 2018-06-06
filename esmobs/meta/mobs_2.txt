@@ -1,5 +1,0 @@
-name = "Tree Monster",
-type = "Monster",
-hp = "27-53",
-drops = "saplings, sticks, apples",
-info = "Easy way to get saplings",

@@ -1,5 +1,0 @@
-name = "The Bomber",
-type = "Monster",
-hp = "50-60",
-drops = "sand, feather, chicken, stone_monster",
-info = "He drops stone_monsters at you, they tough too!",

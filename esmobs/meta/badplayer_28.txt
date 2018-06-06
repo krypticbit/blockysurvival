@@ -1,5 +1,0 @@
-name = "Slenderman",
-type = "Un-Friendly NPC",
-hp = "77-90",
-drops = "sword, apple, obsidian",
-info = "Damage =3 Slow walker.",

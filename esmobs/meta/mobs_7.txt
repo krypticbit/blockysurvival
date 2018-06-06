@@ -1,5 +1,0 @@
-name = "Apple Mons",
-type = "Monster",
-hp = "20-40",
-drops = "apple",
-info = "These buggers are a hassle when mining",

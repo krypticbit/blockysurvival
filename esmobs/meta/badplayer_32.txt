@@ -1,5 +1,0 @@
-name = "Infinium Monster",
-type = "Un-Friendly NPC",
-hp = "?-?",
-drops = "aikerum sword, infinium goo, lava",
-info = "Not much is know about this beast",

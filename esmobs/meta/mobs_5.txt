@@ -1,5 +1,0 @@
-name = "Spider",
-type = "Monster",
-hp = "40-80",
-drops = "cotton and meat",
-info = "3 damage, they will get you",

@@ -1,5 +1,0 @@
-name = "Water Monster",
-type = "Monster",
-hp = "35-75",
-drops = "water flowing, bucket",
-info = "In caves below, he will spawn",

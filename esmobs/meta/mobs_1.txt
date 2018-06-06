@@ -1,5 +1,0 @@
-name = "Dungeon Master",
-type = "Monster",
-hp = "120-350",
-drops = "mese crystal fragment, diamond, mese crystal, diamondblock",
-info = "Deadly Fireballs will knock you out!",

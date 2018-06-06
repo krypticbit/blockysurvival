@@ -1,5 +1,0 @@
-name = "Warthog / Pig",
-type = "Animal",
-hp = "25",
-drops = "pork chop",
-info = "punch it and it will attack",

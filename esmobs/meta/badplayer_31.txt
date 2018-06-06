@@ -1,5 +1,0 @@
-name = "Cactus Man",
-type = "Monster",
-hp = "77-130",
-drops = "mese sword, cactus, dirt",
-info = "Damage = 4 Run = 5",

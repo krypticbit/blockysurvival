@@ -1,5 +1,0 @@
-name = "Jimbo",
-type = "Un-Friendly NPC",
-hp = "73-80",
-drops = "axe, stick, cotton_seed",
-info = "Damage =3 and slow",

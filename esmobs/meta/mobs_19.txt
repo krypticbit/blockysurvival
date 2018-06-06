@@ -1,5 +1,0 @@
-name = "Cow",
-type = "Animal",
-hp = "28",
-drops = "beef, leather",
-info = "Follows wheat, can be milked.",

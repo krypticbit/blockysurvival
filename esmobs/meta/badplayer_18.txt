@@ -1,5 +1,0 @@
-name = "Unknown Ghost",
-type = "Un-Friendly NPC",
-hp = "48-77",
-drops = "sword, pick, stone_with_gold",
-info = "Damage = 3 and slow.",

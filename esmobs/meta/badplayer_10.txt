@@ -1,5 +1,0 @@
-name = "Griefer Warrier",
-type = "Un-Friendly NPC",
-hp = "157-200",
-drops = "very nice swords, cotton",
-info = "Damage =4 Will out run you!",

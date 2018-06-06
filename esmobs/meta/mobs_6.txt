@@ -1,5 +1,0 @@
-name = "Oerkkii",
-type = "Monster",
-hp = "8-34",
-drops = "obsidian",
-info = "Easy way to get obsidian and bones",

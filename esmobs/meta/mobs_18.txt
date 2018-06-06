@@ -1,5 +1,0 @@
-name = "Sheep",
-type = "Animal",
-hp = "12-20",
-drops = "wool, meat",
-info = "Follows wheat, can be bred, can shear for wool, and tamed.",

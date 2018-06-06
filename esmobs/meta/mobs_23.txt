@@ -1,5 +1,0 @@
-name = "White Horse",
-type = "Animal",
-hp = "5-10",
-drops = "meat",
-info = "Right click with saddle to tame.  Ride by sitting on horse.",

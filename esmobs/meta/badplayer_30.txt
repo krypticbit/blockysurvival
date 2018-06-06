@@ -1,5 +1,0 @@
-name = "Zeg9",
-type = "Un-Friendly NPC",
-hp = "137-150",
-drops = "mese sword, diamondblock, apple",
-info = "Damage = 4 Run = 5!!!",

@@ -1,5 +1,0 @@
-name = "Rat",
-type = "Animal",
-hp = "1",
-drops = "rat",
-info = "Right click to pick up",

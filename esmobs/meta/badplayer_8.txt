@@ -1,5 +1,0 @@
-name = "Aggressive Tux",
-type = "Un-Friendly NPC",
-hp = "157-195",
-drops = "sword, snow, ice",
-info = "Damage =3 Slow walker, easy kill.",

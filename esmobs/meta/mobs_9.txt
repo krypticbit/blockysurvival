@@ -1,5 +1,0 @@
-name = "Phoenix Bat",
-type = "Monster",
-hp = "50-60",
-drops = "sand, feather, gold, chicken",
-info = "Hide at night, fireballs are lethal!  Look out for the mini bats too!",

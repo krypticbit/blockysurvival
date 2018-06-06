@@ -1,5 +1,0 @@
-name = "Enderman / Oerkkii",
-type = "Un-Friendly NPC",
-hp = "37-70",
-drops = "sword, bronze_ingot, apple",
-info = "Damage =3 Fast runner",

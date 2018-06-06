@@ -1,5 +1,0 @@
-name = "Bad Sam",
-type = "Un-Friendly NPC",
-hp = "77-90",
-drops = "sword, book, chest",
-info = "Damage =4 and fast!",

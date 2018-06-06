@@ -1,5 +1,0 @@
-name = "Tuxedo Sam",
-type = "Un-Friendly NPC",
-hp = "137-159",
-drops = "sword, stick, goldblock",
-info = "Damage = 2.5 and medium paced walk.",

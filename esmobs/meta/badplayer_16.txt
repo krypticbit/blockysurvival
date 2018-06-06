@@ -1,5 +1,0 @@
-name = "Zombie",
-type = "Friendly NPC",
-hp = "47-85",
-drops = "sword, stick, pick",
-info = "Damage =3 and kinda slow.",

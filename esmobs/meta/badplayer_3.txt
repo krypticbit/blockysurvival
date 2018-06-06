@@ -1,5 +1,0 @@
-name = "Alien Slime",
-type = "Un-Friendly NPC",
-hp = "49-83",
-drops = "sword, stone_with_mese, apple",
-info = "Damage =3 So watch out!",

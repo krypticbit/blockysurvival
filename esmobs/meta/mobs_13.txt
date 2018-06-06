@@ -1,5 +1,0 @@
-name = "Snow Monster",
-type = "Monster",
-hp = "69-112",
-drops = "snow",
-info = "Snow + Dark = This guy!",

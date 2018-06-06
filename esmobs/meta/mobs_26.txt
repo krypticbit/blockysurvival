@@ -1,5 +1,0 @@
-name = "Wolf",
-type = "Animal",
-hp = "55",
-drops = "meat",
-info = "Right click with raw meat to tame into dog.",

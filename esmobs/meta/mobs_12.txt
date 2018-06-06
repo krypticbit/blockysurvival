@@ -1,5 +1,0 @@
-name = "Ice Monster",
-type = "Monster",
-hp = "80-110",
-drops = "ice",
-info = "Only comes out on ice and night.",

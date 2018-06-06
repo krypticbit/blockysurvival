@@ -1,5 +1,0 @@
-name = "Celeron C-55",
-type = "Un-Friendly NPC",
-hp = "127-152",
-drops = "sword, steel_block, bronze_ingot",
-info = "Damage = 3 and quite fast!",

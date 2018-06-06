@@ -1,5 +1,0 @@
-name = "Ironman",
-type = "Un-Friendly NPC",
-hp = "100-120",
-drops = "Diamond sword, stick, diamond pick",
-info = "Damage = 5!!!  RUN!!!",

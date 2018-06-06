@@ -1,5 +1,0 @@
-name = "Mr. Pink",
-type = "Friendly NPC",
-hp = "35-65",
-drops = "sword, apple",
-info = "Right click to have as team player or with gold_lump for trade",

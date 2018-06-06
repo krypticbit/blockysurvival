@@ -1,5 +1,0 @@
-name = "Candy Raver",
-type = "Friendly NPC",
-hp = "125-135",
-drops = "ruby sword, stick, apple",
-info = "Right click to have as team player or with gold_lump for trade",

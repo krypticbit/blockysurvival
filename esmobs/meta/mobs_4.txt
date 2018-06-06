@@ -1,5 +1,0 @@
-name = "Stone Monster",
-type = "Monster",
-hp = "32-55",
-drops = "iron lump, torch, coal",
-info = "Damage = 8! watch out!",

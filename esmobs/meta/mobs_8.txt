@@ -1,5 +1,0 @@
-name = "Herobrine's Bloody Ghost",
-type = "Monster",
-hp = "320-340",
-drops = "mese",
-info = "Dangerous! Stay Away! 10 Damage!",

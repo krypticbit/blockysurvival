@@ -1,5 +1,0 @@
-name = "Angry Sam",
-type = "Un-Friendly NPC",
-hp = "35-75",
-drops = "sword, stick, jungletree",
-info = "Agressive with 3 damage",

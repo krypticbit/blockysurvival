@@ -1,5 +1,0 @@
-name = "Blue Dirt Monster",
-type = "Monster",
-hp = "30-50",
-drops = "dirt",
-info = "Will follow if you hold a rose",

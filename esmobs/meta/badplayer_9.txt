@@ -1,5 +1,0 @@
-name = "Karatie Kid",
-type = "Un-Friendly NPC",
-hp = "177-190",
-drops = "sword, stone_with_diamond, apple",
-info = "Damage =3 Fast!",

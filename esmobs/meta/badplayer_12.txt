@@ -1,5 +1,0 @@
-name = "Bob the Hippie",
-type = "Un-Friendly NPC",
-hp = "57-85",
-drops = "sword, grass, sand",
-info = "Damage =3 Very slow",

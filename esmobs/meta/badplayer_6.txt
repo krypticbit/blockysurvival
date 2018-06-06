@@ -1,5 +1,0 @@
-name = "Ninja",
-type = "Un-Friendly NPC",
-hp = "130-140",
-drops = "sword, gold_ingot, apple",
-info = "Damage =3  Fast fighter",

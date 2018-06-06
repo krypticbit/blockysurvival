@@ -1,5 +1,0 @@
-name = "Snow Wookie",
-type = "Un-Friendly NPC",
-hp = "69-89",
-drops = "sword, water_flowing, apple",
-info = "Damage=3.  Use water flowing for infinium crafts",

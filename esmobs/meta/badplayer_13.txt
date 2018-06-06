@@ -1,5 +1,0 @@
-name = "Janette",
-type = "Friendly NPC",
-hp = "13-15",
-drops = "sword, stick, leaves",
-info = "Right click to have as team player or with gold_lump for trade",

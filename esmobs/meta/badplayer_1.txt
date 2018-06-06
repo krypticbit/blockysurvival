@@ -1,5 +1,0 @@
-name = "O.G. Sam",
-type = "Friendly NPC",
-hp = "25-35",
-drops = "sword, stick, apple",
-info = "Right click to have as team player or with gold_lump for trade",
