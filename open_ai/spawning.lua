@@ -3,7 +3,7 @@
 
 --this is debug to spawn mobs
 open_ai.spawn_step = 0
-open_ai.spawn_timer = 70 --spawn every x seconds
+open_ai.spawn_timer = 1 --spawn every x seconds
 open_ai.spawn_table = {}
 
 function get_suitable_spawn(pos1, pos2, def)
