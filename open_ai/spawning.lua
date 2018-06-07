@@ -14,13 +14,15 @@ function get_suitable_spawn(pos1, pos2, def)
 	local area = VoxelArea:new{MinEdge = emin, MaxEdge = emax}
 	local block_id = minetest.get_content_id(def.spawn_node)
 	for i_here in area:iter(pos1.x, pos1.y, pos1.z, pos2.x, pos2.y, pos2.z) do
-		if data[i_here] == block_id and area:contains(pos.x, pos.y + 1, pos.z) then
+		if data[i_here] == block_id then
 			local pos = area:position(i_here)
-			local i_above = area:index(pos.x, pos.y + 1, pos.z)
-			minetest.log(minetest.get_name_from_content_id(i_above))
-			local walkable = minetest.registered_nodes[minetest.get_name_from_content_id(i_above)].walkable
-			if not walkable then
-				table.insert(blocks, pos)
+			if area:contains(pos.x, pos.y + 1, pos.z) then
+				local i_above = area:index(pos.x, pos.y + 1, pos.z)
+				minetest.log(minetest.get_name_from_content_id(i_above))
+				local walkable = minetest.registered_nodes[minetest.get_name_from_content_id(i_above)].walkable
+				if not walkable then
+					table.insert(blocks, pos)
+				end
 			end
 		end
 	end
