@@ -19,21 +19,21 @@ function get_suitable_spawn(pos1, pos2, def)
 			for x = pos1.x, pos2.x do
 				local voxel_ind = area:index(x, y, z)
 				if data[voxel_ind] == block_id then -- Mob spawns on block
-					print("If 1")
+					minetest.log("If 1")
 					minetest.log("Can spawn at " .. tostring(x) .. ", " .. tostring(y) .. ", " .. tostring(z))
 					local above_voxel_ind = area:index(x, y + 1, z)
 					local is_walkable = minetest.registered_nodes[minetest.get_name_from_content_id(data[above_voxel_ind])].walkable -- Determine if node above is walkable
 					if not is_walkable then -- Non-obstructing node above; air, grass, flowers, etc. (NOTE: Water souce walkable = false, fish can spawn underwater)
-						print("If 2")
+						minetest.log("If 2")
 						if def.liquid_mob then -- If the mob swims
-							print("If 3")
+							minetest.log("If 3")
 							local below_voxel_ind = area:index(x, y - 1, z) -- Make sure the liquid is at least 2 nodes deep
 							if data[below_voxel_ind] == block_id then -- Liquid is at least two nodes deep
-								print("If 4")
+								minetest.log("If 4")
 								table.insert(blocks, {x = x, y = y, z = z})
 							end
 						else
-							print("if 5")
+							minetest.log("if 5")
 							table.insert(blocks, {x = x, y = y, z = z})
 						end
 					end
@@ -48,13 +48,13 @@ minetest.register_globalstep(function(dtime)
 	open_ai.spawn_step = open_ai.spawn_step + dtime
 	
 	if open_ai.spawn_step > open_ai.spawn_timer then
-		print("spawning")
+		minetest.log("spawning")
 		for _,player in ipairs(minetest.get_connected_players()) do
 			if player:get_hp() > 0 then
 				local pos = player:getpos()
 				for mob,def_table in pairs(open_ai.spawn_table) do
 					if math.random() < def_table.chance then
-						--print(mob,dump(def_table))
+						--minetest.log(mob,dump(def_table))
 						
 						--test for nodes to spawn mobs in
 						local test_for_node = get_suitable_spawn({x=pos.x-20,y=pos.y-20,z=pos.z-20}, {x=pos.x+20,y=pos.y+20,z=pos.z+20}, def_table)
