@@ -20,7 +20,7 @@ function get_suitable_spawn(pos1, pos2, def)
 				local voxel_ind = area:index(x, y, z)
 				if data[voxel_ind] == block_id then -- Mob spawns on block
 					local above_voxel_ind = area:index(x, y + 1, z)
-					if data[voxel_ind] == air_id then -- There is air above the block
+					if data[above_voxel_ind] == air_id then -- There is air above the block
 						if def.liquid_mob then -- If the mob swims
 							local below_voxel_ind = area:index(x, y - 1, z) -- Make sure the liquid is at least 2 nodes deep
 							if data[below_voxel_ind] == block_id then -- Liquid is at least two nodes deep
