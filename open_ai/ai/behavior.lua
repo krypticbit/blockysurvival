@@ -43,7 +43,7 @@ function ai_library.behavior:decision(self,dtime)
 				self.behavior_timer = 0
 				--make fish swim up and down randomly
 				if self.liquid_mob == true then
-					self.swim_pitch = math.random(-self.max_velocity,self.max_velocity)+(math.random()*math.random(-1,1))
+					self.swim_pitch = math.random(0, self.max_velocity)
 				end
 			--build a structure
 			elseif self.state == 2 then
