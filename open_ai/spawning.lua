@@ -18,9 +18,8 @@ function get_suitable_spawn(pos1, pos2, def)
 		for y = pos1.y + 1, pos2.y - 1 do -- Needs to be able to check if the node above is air, and sometimes if the node below is water
 			for x = pos1.x, pos2.x do
 				local voxel_ind = area:index(x, y, z)
-				minetest.log("ID for " .. def.spawn_node .. ": " .. tostring(block_id))
-				minetest.log("Voxel ID " .. tostring(data[voxel_ind]) .. ": " .. minetest.get_name_from_content_id(data[voxel_ind]))
 				if data[voxel_ind] == block_id then -- Mob spawns on block
+					minetest.log(minetest.get_name_from_content_id(data[voxel_ind]))
 					local above_voxel_ind = area:index(x, y + 1, z)
 					local is_walkable = minetest.registered_nodes[minetest.get_name_from_content_id(data[above_voxel_ind])].walkable -- Determine if node above is walkable
 					if not is_walkable then -- Non-obstructing node above; air, grass, flowers, etc. (NOTE: Water souce walkable = false, fish can spawn underwater)
