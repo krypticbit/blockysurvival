@@ -62,6 +62,7 @@ minetest.register_globalstep(function(dtime)
 							if def_table.liquid_mob ~= true then
 								pos2.y = pos2.y - open_ai.defaults[mob]["collisionbox"][2]
 							end
+							minetest.log(mob .. "spawned at" .. minetest.serialize(pos2))
 							minetest.add_entity(pos2, mob)
 						end
 					end
