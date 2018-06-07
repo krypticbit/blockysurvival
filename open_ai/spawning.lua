@@ -14,15 +14,22 @@ function get_suitable_spawn(pos1, pos2, def)
 	local area = VoxelArea:new{MinEdge = emin, MaxEdge = emax}
 	local block_id = minetest.get_content_id(def.spawn_node)
 	for i_here in area:iter(pos1.x, pos1.y, pos1.z, pos2.x, pos2.y, pos2.z) do
-		if data[i_here] == block_id then
-			local pos = area:position(i_here)
-			if area:contains(pos.x, pos.y + 1, pos.z) then
+		if data[i_here] == block_id then -- If block equals spawn block
+			local pos = area:position(i_here) 
+			if area:contains(pos.x, pos.y + 1, pos.z) then 
 				local i_above = area:index(pos.x, pos.y + 1, pos.z)
 				local node = minetest.registered_nodes[minetest.get_name_from_content_id(data[i_above])]
-				if node then
+				if node then -- If there is a walkable node above
 					local walkable = node.walkable
 					if not walkable then
-						table.insert(blocks, pos)
+						if liquid_mob == true then -- If it swims, make sure it is at least 2 ndoes deep
+							local i_under = area:index(pos.x, pos.y - 1, pos.z)
+							if data[i_under] == block_id then
+								table.insert(blocks, pos)
+							end
+						else
+							table.insert(blocks, pos)
+						end
 					end
 				end
 			end
