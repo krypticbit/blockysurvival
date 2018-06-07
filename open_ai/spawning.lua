@@ -18,8 +18,7 @@ function get_suitable_spawn(pos1, pos2, def)
 			local pos = area:position(i_here)
 			if area:contains(pos.x, pos.y + 1, pos.z) then
 				local i_above = area:index(pos.x, pos.y + 1, pos.z)
-				minetest.log(minetest.get_name_from_content_id(i_above))
-				local node = minetest.registered_nodes[minetest.get_name_from_content_id(i_above)]
+				local node = minetest.registered_nodes[minetest.get_name_from_content_id(data[i_above])]
 				if node then
 					local walkable = node.walkable
 					if not walkable then
