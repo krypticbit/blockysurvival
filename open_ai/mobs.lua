@@ -49,6 +49,7 @@ open_ai.register_mob("fish",{
 	spawn_node  = "default:water_source",
 	spawn_node_percentage = 20,
 	spawn_chance = 1/3, -- One in three
+	nodes_required = 2,
 	
 	--safari ball variables
 	ball_color = "ee7600",--color in hex, can be any color
