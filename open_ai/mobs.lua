@@ -48,6 +48,7 @@ open_ai.register_mob("fish",{
 	hostile     = false,
 	spawn_node  = "default:water_source",
 	spawn_node_percentage = 20,
+	spawn_chance = 1/3, -- One in three
 	
 	--safari ball variables
 	ball_color = "ee7600",--color in hex, can be any color
@@ -131,6 +132,7 @@ open_ai.register_mob("big_shadow",{
 	hostile     = false,
 	spawn_node  = "default:water_source",
 	spawn_node_percentage = 70,
+	spawn_chance = 1/7, -- One in seven
 	
 	--safari ball variables
 	ball_color = "ee7600",--color in hex, can be any color
@@ -215,7 +217,8 @@ open_ai.register_mob("sheep",{
 	rides_cart  = true,
 	hostile     = false,
 	spawn_node  = "default:dirt_with_grass",
-	spawn_noe_percentage = 40,
+	spawn_node_percentage = 40,
+	spawn_chance = 1/3, -- One in three
 	
 	--safari ball variables
 	ball_color = "0000ff",--color in hex, can be any color 
@@ -312,6 +315,7 @@ open_ai.register_mob("horse",{
 	chair_textures = {"equine2-saddle.png"}, --changes the mob texture to this when wearing a saddle
 	spawn_node  = "default:dirt_with_grass",
 	spawn_node_percentage = 60,
+	spawn_chance = 1/4, -- One in four
 	
 	--safari ball variables
 	ball_color = "551a8b",--color in hex, can be any color 
@@ -511,6 +515,7 @@ open_ai.register_mob("slime",{
 	hostile     = false,
 	spawn_node  = "default:dirt_with_grass",
 	spawn_node_percentage = 90,
+	spawn_chance = 1/8, -- One in eight; you don't see a slime every day
 	
 	--safari ball variables
 	ball_color = "32CD32",--color in hex, can be any color 
