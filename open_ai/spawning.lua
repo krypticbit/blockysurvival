@@ -22,7 +22,7 @@ function get_suitable_spawn(pos1, pos2, def)
 				if node then -- If there is a walkable node above
 					local walkable = node.walkable
 					if not walkable then
-						if liquid_mob == true then -- If it swims, make sure it is at least 2 ndoes deep
+						if def.liquid_mob == true then -- If it swims, make sure it is at least 2 ndoes deep
 							local i_under = area:index(pos.x, pos.y - 1, pos.z)
 							if data[i_under] == block_id then
 								table.insert(blocks, pos)
