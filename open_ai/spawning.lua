@@ -32,7 +32,7 @@ minetest.register_globalstep(function(dtime)
 							end
 						end
 						--if position is above 0 then spawn node was found successfully 
-						if #positions > def_table.min_percent * 4 then
+						if #test_for_node > def_table.min_percent * 4 then
 							--get a random node out of the table and add 1 y to it to spawn mob above it
 							--use the mob height eventually to spawn on the node exactly
 							local pos2 = test_for_node[math.random(1,positions)]
