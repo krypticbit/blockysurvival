@@ -7,7 +7,7 @@ open_ai.spawn_timer = 70 --spawn every x seconds
 open_ai.spawn_table = {}
 
 function get_suitable_spawn(pos1, pos2, def)
-	blocks = {}
+	local blocks = {}
 	local vm = minetest.get_voxel_manip()
 	local emin, emax = vm:read_from_map(pos1, pos2)
 	local data = vm:get_data()
