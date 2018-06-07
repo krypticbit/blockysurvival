@@ -85,6 +85,7 @@ open_ai.register_mob = function(name,def)
 	open_ai.spawn_table[entity_name].spawn_node = def.spawn_node
 	open_ai.spawn_table[entity_name].liquid_mob = def.liquid_mob
 	open_ai.spawn_table[entity_name].min_percent = def.spawn_node_percentage or 0
+	open_ai.spawn_table[entity_name].chance = def.spawn_chance or 1
 	--store default collision box globally
 	open_ai.defaults[entity_name] = {}
 	open_ai.defaults[entity_name]["collisionbox"] = table.copy(def.collisionbox)
