@@ -19,16 +19,21 @@ function get_suitable_spawn(pos1, pos2, def)
 			for x = pos1.x, pos2.x do
 				local voxel_ind = area:index(x, y, z)
 				if data[voxel_ind] == block_id then -- Mob spawns on block
+					print("If 1")
 					minetest.log("Can spawn at " .. tostring(x) .. ", " .. tostring(y) .. ", " .. tostring(z))
 					local above_voxel_ind = area:index(x, y + 1, z)
 					local is_walkable = minetest.registered_nodes[minetest.get_name_from_content_id(data[above_voxel_ind])].walkable -- Determine if node above is walkable
 					if not is_walkable then -- Non-obstructing node above; air, grass, flowers, etc. (NOTE: Water souce walkable = false, fish can spawn underwater)
+						print("If 2")
 						if def.liquid_mob then -- If the mob swims
+							print("If 3")
 							local below_voxel_ind = area:index(x, y - 1, z) -- Make sure the liquid is at least 2 nodes deep
 							if data[below_voxel_ind] == block_id then -- Liquid is at least two nodes deep
+								print("If 4")
 								table.insert(blocks, {x = x, y = y, z = z})
 							end
 						else
+							print("if 5")
 							table.insert(blocks, {x = x, y = y, z = z})
 						end
 					end
