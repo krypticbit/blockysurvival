@@ -3,7 +3,7 @@
 
 --this is debug to spawn mobs
 open_ai.spawn_step = 0
-open_ai.spawn_timer = 1 --spawn every x seconds
+open_ai.spawn_timer = 10 --spawn every x seconds
 open_ai.spawn_table = {}
 
 function get_suitable_spawn(pos1, pos2, def)
@@ -13,7 +13,10 @@ function get_suitable_spawn(pos1, pos2, def)
 	local data = vm:get_data()
 	local area = VoxelArea:new{MinEdge = emin, MaxEdge = emax}
 	local block_id = minetest.get_content_id(def.spawn_node)
+	local x = 0
 	for i_here in area:iter(pos1.x, pos1.y + 1, pos1.z, pos2.z, pos2.y - 1, pos2.z) do
+		x = x + 1
+		minetest.log(tostring(x))
 		if data[i_here] == def.spawn_node then
 			local pos = area:position(i_here)
 			local i_above = area:index(pos.x, pos.y + 1, pos.z)
