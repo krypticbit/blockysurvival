@@ -13,7 +13,7 @@ function get_suitable_spawn(pos1, pos2, def)
 	local data = vm:get_data()
 	local area = VoxelArea:new{MinEdge = emin, MaxEdge = emax}
 	local block_id = minetest.get_content_id(def.spawn_node)
-	for i_here in area:iter(pos1.x, pos1.y + 1, pos1.z, pos2.z, pos2.y - 1, pos2.z) do
+	for i_here in area:iter(pos1.x, pos1.y + 1, pos1.z, pos2.x, pos2.y - 1, pos2.z) do
 		minetest.log(tostring(i_here))
 		if data[i_here] == def.spawn_node then
 			local pos = area:position(i_here)
