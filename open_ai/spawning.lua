@@ -17,7 +17,7 @@ function get_suitable_spawn(pos1, pos2, def)
 		if data[i_here] == block_id then
 			local pos = area:position(i_here)
 			local i_above = area:index(pos.x, pos.y + 1, pos.z)
-			local walkable = mintest.registered_nodes[minetest.get_name_from_content_id(i_above)].walkable
+			local walkable = minetest.registered_nodes[minetest.get_name_from_content_id(i_above)].walkable
 			if not walkable then
 				table.insert(blocks, pos)
 			end
