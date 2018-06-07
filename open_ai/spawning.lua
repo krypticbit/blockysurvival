@@ -24,7 +24,7 @@ minetest.register_globalstep(function(dtime)
 							for i = 1, def_table.nodes_required do
 								for id, node in ipairs(test_for_node) do
 									local newnode = node
-									local newnode.y = newnode.y - i
+									newnode.y = newnode.y - i
 									if minetest.get_node(node).name ~= def_table.spawn_node then
 										table.remove(test_for_node, id)
 									end
