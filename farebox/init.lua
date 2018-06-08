@@ -132,9 +132,10 @@ minetest.register_node("farebox:farebox", {
 minetest.register_craft({output = "farebox:farebox",
 			 recipe = {
 			    {"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-			    {"default:steel_ingot", "", "default:steel_ingot"},
-			    {"default:steel_ingot", "mesecons:mesecon", "default:steel_ingot"},
+			    {"default:steel_ingot", "default:mese_crystal", "default:steel_ingot"},
+			    {"default:steel_ingot", "default:diamond", "default:steel_ingot"},
 			 }
 })
+
 local modpath = minetest.get_modpath("farebox")
 dofile(modpath .. "/faregate.lua")

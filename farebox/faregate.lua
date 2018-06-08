@@ -74,10 +74,7 @@ minetest.register_node("farebox:faregate_open", {
 	drop = "farebox:faregate"
 })
 
-minetest.register_craft({output = "farebox:faregate",
-			 recipe = {
-
-
-			    {"farebox:farebox", "doors:door_steel"},
-			 }
+minetest.register_craft({type = "shapeless",
+			output = "farebox:faregate",
+			recipe = {"farebox:farebox", "doors:door_steel"},
 })
