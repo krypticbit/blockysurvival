@@ -41,32 +41,32 @@ function ai_library.movement:apply_physics(self)
 		if self.jump_only == true then
 			--fall and stop because jump_only mobs only jump around to move
 			if self.gravity == -10 and vel.y == 0 then 
-				set_accl(self,object, {x=(0 - vel.x + self.c_x)*self.acceleration,y=self.gravity,z=(0 - vel.z + self.c_z)*self.acceleration})				
+				set_accl(self.object, {x=(0 - vel.x + self.c_x)*self.acceleration,y=self.gravity,z=(0 - vel.z + self.c_z)*self.acceleration})				
 			--move around normally if jumping
 			elseif self.gravity == -10 and vel.y ~= 0 then
-				set_accl(self,object, {x=(x - vel.x + self.c_x)*self.acceleration,y=self.gravity,z=(z - vel.z + self.c_z)*self.acceleration})
+				set_accl(self.object, {x=(x - vel.x + self.c_x)*self.acceleration,y=self.gravity,z=(z - vel.z + self.c_z)*self.acceleration})
 			--allow jump only mobs to swim
 			else 
-				set_accl(self,object, {x=(x - vel.x + self.c_x)*self.acceleration,y=(self.gravity-vel.y)*self.acceleration,z=(z - vel.z + self.c_z)*self.acceleration})
+				set_accl(self.object, {x=(x - vel.x + self.c_x)*self.acceleration,y=(self.gravity-vel.y)*self.acceleration,z=(z - vel.z + self.c_z)*self.acceleration})
 			end				
 		--normal walking mobs
 		else
 			--fall
 			if self.gravity == -10 then
-				set_accl(self,object, {x=(x - vel.x + self.c_x)*self.acceleration,y=self.gravity,z=(z - vel.z + self.c_z)*self.acceleration})				
+				set_accl(self.object, {x=(x - vel.x + self.c_x)*self.acceleration,y=self.gravity,z=(z - vel.z + self.c_z)*self.acceleration})				
 			--swim
 			else 
-				set_accl(self,object, {x=(x - vel.x + self.c_x)*self.acceleration,y=(self.gravity-vel.y)*self.acceleration,z=(z - vel.z + self.c_z)*self.acceleration})
+				set_accl(self.object, {x=(x - vel.x + self.c_x)*self.acceleration,y=(self.gravity-vel.y)*self.acceleration,z=(z - vel.z + self.c_z)*self.acceleration})
 			end
 		end
 	--liquid mob
 	elseif self.liquid_mob == true then
 		--out of water
 		if self.gravity == -10 and self.liquid == 0 then 
-			set_accl(self,object, {x=(0 - vel.x + self.c_x)*self.acceleration,y=self.gravity,z=(0 - vel.z + self.c_z)*self.acceleration})
+			set_accl(self.object, {x=(0 - vel.x + self.c_x)*self.acceleration,y=self.gravity,z=(0 - vel.z + self.c_z)*self.acceleration})
 		--swimming
 		else 
-			set_accl(self,object, {x=(x - vel.x + self.c_x)*self.acceleration,y=(self.gravity-vel.y)*self.acceleration,z=(z - vel.z + self.c_z)*self.acceleration})
+			set_accl(self.object, {x=(x - vel.x + self.c_x)*self.acceleration,y=(self.gravity-vel.y)*self.acceleration,z=(z - vel.z + self.c_z)*self.acceleration})
 		end
 	end	
 	
