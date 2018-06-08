@@ -109,6 +109,6 @@ function homedecor.stop_particle_spawner(pos)
 		end, s_handle)
 	end
 
-	this_spawner_meta:set_int("active", nil)
-	this_spawner_meta:set_int("sound", nil)
+	--this_spawner_meta:set_int("active", nil)
+	--this_spawner_meta:set_int("sound", nil)
 end
