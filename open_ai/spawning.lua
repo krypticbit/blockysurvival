@@ -46,24 +46,27 @@ minetest.register_globalstep(function(dtime)
 		for _,player in ipairs(minetest.get_connected_players()) do
 			if player:get_hp() > 0 then
 				local pos = player:getpos()
+				local entites = minetest.get_objects_inside_radius(pos, 20)
 				for mob,def_table in pairs(open_ai.spawn_table) do
-					if math.random() < def_table.chance then
-						--minetest.log(mob,dump(def_table))
+					if def_table.max_entities == nil or def_table.max_entities < #entites then
+						if math.random() < def_table.chance then
+							--minetest.log(mob,dump(def_table))
 						
-						--test for nodes to spawn mobs in
-						local test_for_node = get_suitable_spawn({x=pos.x-20,y=pos.y-20,z=pos.z-20}, {x=pos.x+20,y=pos.y+20,z=pos.z+20}, def_table)
-						--if the table has a node position then spawn the mob
-						local positions = table.getn(test_for_node)
-						--if position is above 0 then spawn node was found successfully 
-						if positions > def_table.min_percent * 4 then
-							--get a random node out of the table and add 1 y to it to spawn mob above it
-							--use the mob height eventually to spawn on the node exactly
-							local pos2 = test_for_node[math.random(1,positions)]
-							if def_table.liquid_mob ~= true then
-								pos2.y = pos2.y - open_ai.defaults[mob]["collisionbox"][2]
+							--test for nodes to spawn mobs in
+							local test_for_node = get_suitable_spawn({x=pos.x-20,y=pos.y-20,z=pos.z-20}, {x=pos.x+20,y=pos.y+20,z=pos.z+20}, def_table)
+							--if the table has a node position then spawn the mob
+							local positions = table.getn(test_for_node)
+							--if position is above 0 then spawn node was found successfully 
+							if positions > def_table.min_percent * 4 then
+								--get a random node out of the table and add 1 y to it to spawn mob above it
+								--use the mob height eventually to spawn on the node exactly
+								local pos2 = test_for_node[math.random(1,positions)]
+								if def_table.liquid_mob ~= true then
+									pos2.y = pos2.y - open_ai.defaults[mob]["collisionbox"][2]
+								end
+								minetest.log(mob .. "spawned at" .. minetest.serialize(pos2))
+								minetest.add_entity(pos2, mob)
 							end
-							minetest.log(mob .. "spawned at" .. minetest.serialize(pos2))
-							minetest.add_entity(pos2, mob)
 						end
 					end
 					
