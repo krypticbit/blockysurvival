@@ -50,7 +50,7 @@ open_ai.register_mob("fish",{
 	spawn_node_percentage = 20,
 	spawn_chance = 1/3, -- One in three
 	nodes_required = 2,
-	
+	max_entities = 3, -- Maxium entites in 20 node radius for mob to spawn
 	--safari ball variables
 	ball_color = "ee7600",--color in hex, can be any color
 	
@@ -134,7 +134,8 @@ open_ai.register_mob("big_shadow",{
 	spawn_node  = "default:water_source",
 	spawn_node_percentage = 70,
 	spawn_chance = 1/7, -- One in seven
-	
+	max_entities = 2, -- Maxium entites in 20 node radius for mob to spawn
+		
 	--safari ball variables
 	ball_color = "ee7600",--color in hex, can be any color
 	
@@ -220,6 +221,7 @@ open_ai.register_mob("sheep",{
 	spawn_node  = "default:dirt_with_grass",
 	spawn_node_percentage = 40,
 	spawn_chance = 1/3, -- One in three
+	max_entities = 2, -- Maxium entites in 20 node radius for mob to spawn
 	
 	--safari ball variables
 	ball_color = "0000ff",--color in hex, can be any color 
@@ -317,6 +319,7 @@ open_ai.register_mob("horse",{
 	spawn_node  = "default:dirt_with_grass",
 	spawn_node_percentage = 60,
 	spawn_chance = 1/4, -- One in four
+	max_entities = 2, -- Maxium entites in 20 node radius for mob to spawn
 	
 	--safari ball variables
 	ball_color = "551a8b",--color in hex, can be any color 
@@ -517,6 +520,7 @@ open_ai.register_mob("slime",{
 	spawn_node  = "default:dirt_with_grass",
 	spawn_node_percentage = 90,
 	spawn_chance = 1/8, -- One in eight; you don't see a slime every day
+	max_entities = 2, -- Maxium entites in 20 node radius for mob to spawn
 	
 	--safari ball variables
 	ball_color = "32CD32",--color in hex, can be any color 
