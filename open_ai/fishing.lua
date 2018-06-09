@@ -312,7 +312,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = "open_ai:fishing_pole_lure",
 	type = "shapeless",
+	output = "open_ai:fishing_pole_lure",
 	recipe = {"open_ai:fishing_pole_no_lure", "farming_redo:blueberry"},
 })
