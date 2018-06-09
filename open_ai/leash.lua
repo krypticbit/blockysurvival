@@ -44,3 +44,12 @@ minetest.register_craftitem("open_ai:leash", {
 		end
 	end,
 })
+
+minetest.register_craft({
+	output = "open_ai:leash",
+	recipe = {
+		{"", "farming:string", "farming:string"},
+		{"", "farming:string", "farming:string"},
+		{"farming:string", "", ""},
+	},
+})

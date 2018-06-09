@@ -301,3 +301,18 @@ minetest.register_entity("open_ai:lure", {
 		self.lure_function(self,dtime)
 	end,
 })
+
+minetest.register_craft({
+	output = "open_ai:fishing_pole_no_lure",
+	recipe = {
+		{"default:stick", "farming:string", ""},
+		{"default:stick", "", "farming:string"},
+		{"default:stick", "", "farming:string"},
+	},
+})
+
+minetest.register_craft({
+	output = "open_ai:fishing_pole_lure",
+	type = "shapeless",
+	recipe = {"open_ai:fishing_pole_no_lure", "farming_redo:blueberry"},
+})
