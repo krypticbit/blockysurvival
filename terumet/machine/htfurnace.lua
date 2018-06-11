@@ -216,7 +216,7 @@ minetest.register_craft{ output = base_htf.unlit_id, recipe = {
     {terumet.id('item_ceramic'), terumet.id('item_ceramic'), terumet.id('item_ceramic')}
 }}
 
-tubelib.register_node(base_asm.unlit_id, {base_asm.lit_id}, {
+tubelib.register_node(base_htf.unlit_id, {base_htf.lit_id}, {
     on_pull_item = function(pos, side, player_name)
         if minetest.is_protected(pos, player_name) then
             return nil
