@@ -698,20 +698,20 @@ end
 -- was written by
 -- BillyS
 
-function base_mech.get_item_from_inventory(inv, list)
+function base_mach.get_item_from_inventory(inv, list)
     if inv:is_empty(list) then
         return nil
     end
     local stacks = inv:get_list(list)
     local take
-    for s in pairs(stacks) do
+    for _, s in pairs(stacks) do
         if not s:is_empty() then
             return s:get_name()
         end
     end
 end
 
-function base_mech.add_item_to_inventory(inv, list, item)
+function base_mach.add_item_to_inventory(inv, list, item)
     if inv:room_for_item(list, item) then
         inv:add_item(list, item)
         return true
