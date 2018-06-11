@@ -215,3 +215,27 @@ minetest.register_craft{ output = base_htf.unlit_id, recipe = {
     {terumet.id('item_ceramic'), terumet.id('frame_tste'), terumet.id('item_ceramic')},
     {terumet.id('item_ceramic'), terumet.id('item_ceramic'), terumet.id('item_ceramic')}
 }}
+
+tubelib.register_node(base_asm.unlit_id, {base_asm.lit_id}, {
+    on_pull_item = function(pos, side, player_name)
+        if minetest.is_protected(pos, player_name) then
+            return nil
+        end
+        local inv = minetest.get_meta(pos):get_inventory()
+        return base_mach.get_item_from_inventory(inv, "out")
+    end,
+    on_push_item = function(pos, side, item, player_name)
+        if minetest.is_protected(pos, player_name) then
+            return false
+        end
+        local inv = minetest.get_meta(pos):get_inventory()
+        return base_mach.add_item_to_inventory(inv, "in", item)
+    end,
+    on_unpull_item = function(pos, side, item, player_name)
+        if minetest.is_protected(pos, player_name) then
+            return false
+        end
+        return base_mach.add_item_to_inventory(inv, "out", item)
+    end,
+    on_recv_message = function(pos, topic, payload) end
+})
