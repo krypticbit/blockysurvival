@@ -693,3 +693,28 @@ function base_mach.allow_move(pos, from_list, from_index, to_list, to_index, cou
     local stack = minetest.get_meta(pos):get_inventory():get_stack(from_list, from_index)
     return base_mach.allow_put(pos, to_list, to_index, stack, player)
 end
+
+-- Code after this
+-- was written by
+-- BillyS
+
+function base_mech.get_item_from_inventory(inv, list)
+    if inv:is_empty(list) then
+        return nil
+    end
+    local stacks = inv:get_list(list)
+    local take
+    for s in pairs(stacks) do
+        if not s:is_empty() then
+            return s:get_name()
+        end
+    end
+end
+
+function base_mech.add_item_to_inventory(inv, list, item)
+    if inv:room_for_item(list, item) then
+        inv:add_item(list, item)
+        return true
+    end
+    return false
+end
