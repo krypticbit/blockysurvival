@@ -706,7 +706,9 @@ function base_mach.get_item_from_inventory(inv, list)
     local take
     for _, s in pairs(stacks) do
         if not s:is_empty() then
-            return s:get_name()
+            local item = s:get_name()
+            inv:remove_item(list, item)
+            return item
         end
     end
 end
