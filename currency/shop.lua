@@ -220,7 +220,7 @@ minetest.register_on_player_receive_fields(function(sender, formname, fields)
 	end
 end)
 
-tubelib.register_node("currency:shop", nil, {
+tubelib.register_node("currency:shop", {}, {
 	on_pull_item = function (pos, side, player_name)
 		local meta = minetest.get_meta(pos)
 		if meta:get_string("owner") ~= player_name then
