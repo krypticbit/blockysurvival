@@ -232,7 +232,9 @@ tubelib.register_node("currency:shop", {}, {
 		end
 		for _, stack in pairs(inv:get_list("customers_gave")) do
 			if not stack:is_empty() then
-				return stack:get_name()
+				local item = stack:get_name()
+				inv:remove_item("customers_gave", item)
+				return item
 			end
 		end
 	end,
