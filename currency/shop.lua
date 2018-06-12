@@ -230,7 +230,7 @@ tubelib.register_node("currency:shop", {}, {
 		if inv:is_empty("customers_gave") then
 			return nil
 		end
-		for _, stack in inv:get_list("customers_gave") do
+		for _, stack in pairs(inv:get_list("customers_gave")) do
 			if not stack:is_empty() then
 				return stack:get_name()
 			end
