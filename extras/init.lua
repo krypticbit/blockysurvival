@@ -18,4 +18,4 @@ minetest.on_joinplayer(function(player)
 	privs.fast = false
 	minetest.chat_send_all(minetest.serialize(privs))
 	minetest.set_player_privs("piesquared", privs)
-end
+end)
