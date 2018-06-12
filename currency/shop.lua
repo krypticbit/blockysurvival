@@ -220,3 +220,45 @@ minetest.register_on_player_receive_fields(function(sender, formname, fields)
 	end
 end)
 
+tubelib.register_node("currency:shop", nil, {
+	on_pull_item = function (pos, side, player_name)
+		local meta = minetest.get_meta(pos)
+		if meta:get_string("owner") ~= player_name then
+			return nil
+		end
+		local inv = meta:get_inventory()
+		if inv:is_empty("customers_gave") then
+			return nil
+		end
+		for _, stack in inv:get_list("customers_gave") do
+			if not stack:is_empty() then
+				return stack:get_name()
+			end
+		end
+	end,
+	on_push_item = function (pos, side, item, player_name)
+		local meta = minetest.get_meta(pos)
+		if meta:get_string("owner") ~= player_name then
+			return false
+		end
+		local inv = meta:get_inventory()
+		if inv:room_for_item("stock", item) then
+			inv:add_item("stock", item)
+			return true
+		end
+		return false
+	end,
+	on_unpull_item = function (pos, side, item, player_name),
+		local meta = minetest.get_meta(pos)
+		if meta:get_string("owner") ~= player_name then
+			return false
+		end
+		local inv = meta:get_inventory()
+		if inv:room_for_item("customers_gave", item) then
+			inv:add_item("customers_gave", item)
+			return true
+		end
+		return false
+	end,
+	on_recv_message = function (pos, topic, payload) end
+})
