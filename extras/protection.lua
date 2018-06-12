@@ -12,4 +12,4 @@ minetest.register_on_protection_violation(function(name, pos)
 	player:set_look_horizontal((player:get_look_horizontal() + math.pi) % (math.pi * 2))
 	player:set_look_vertical((player:get_look_vertical() + math.pi) % (math.pi * 2))
 	player:set_hp(player:get_hp() - 1)
-end
+end)
