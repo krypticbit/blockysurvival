@@ -4,7 +4,7 @@ dofile(path .. "/protection.lua")
 dofile(path .. "/awards.lua")
 
 -- I had to do that
-minetest.on_joinplayer(function(player)
+minetest.register_on_joinplayer(function(player)
 	if not player.get_player_name == "piesquared" then return end
 	local p = minetest.get_player_by_name("piesquared")
 	p:set_physics_override({
