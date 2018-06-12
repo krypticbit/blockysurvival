@@ -248,7 +248,7 @@ tubelib.register_node("currency:shop", nil, {
 		end
 		return false
 	end,
-	on_unpull_item = function (pos, side, item, player_name),
+	on_unpull_item = function (pos, side, item, player_name)
 		local meta = minetest.get_meta(pos)
 		if meta:get_string("owner") ~= player_name then
 			return false
