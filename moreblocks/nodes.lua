@@ -142,7 +142,7 @@ local nodes = {
 		on_construct = unifieddyes.on_construct,
 		after_place_node = unifieddyes.recolor_on_place,
 		after_dig_node = unifieddyes.after_dig_node,
-		groups = {stone = 1, cracky = 3},
+		groups = {stone = 1, cracky = 3, ud2_param2_colorable = 1},
 		is_ground_content = false,
 		sounds = sound_stone,
 	},
