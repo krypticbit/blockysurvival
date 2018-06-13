@@ -56,3 +56,42 @@ minetest.register_node("core:fake_stone", {
 	walkable = false,
 	groups = {cracky = 3, stone = 1},
 })
+
+-- Marble
+local marble = {
+	description = "Marble",
+	tiles = {"core_marble.png"},
+	groups = {cracky = 3}
+}
+
+local marble = {
+	description = "Marble",
+	tiles = {"core_marble.png"},
+	groups = {cracky = 3}
+}
+
+local marble_block = {
+	description = "Marble Block",
+	tiles = {"core_marble_block.png"},
+	groups = {cracky = 3}
+}
+
+minetest.register_node("core:marble", marble)
+stairsplus:register_all("core", "marble", "core:marble", marble)
+
+minetest.register_node("core:marble_block", marble_block)
+stairsplus:register_all("core", "marble_block", "core:marble_block", marble_block)
+
+minetest.register_craft({
+	output = "core:marble_block 9",
+	recipe = {{"core:marble", "core:marble", "core:marble"},
+			  {"core:marble", "core:marble", "core:marble"},
+			  {"core:marble", "core:marble", "core:marble"}}
+})
+
+minetest.register_craft({
+	type = "cooking",
+	output = "core:marble",
+	recipe = "default:stone",
+	cooktime = 5
+})
