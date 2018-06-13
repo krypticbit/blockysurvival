@@ -485,3 +485,11 @@ minetest.register_craftitem("moreblocks:sweeper", {
 	description = S("Sweeper"),
 	inventory_image = "moreblocks_sweeper.png",
 })
+
+minetest.register_lbm({
+	name = "moreblocks:fixstonetile",
+	nodenames = {"moreblocks:stone_tile"}
+	action = function(pos, node)
+		minetest.set_node(pos, {name = "moreblocks:stone_tile", param2 = 240})
+	end
+})
