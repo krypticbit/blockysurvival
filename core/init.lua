@@ -95,3 +95,10 @@ minetest.register_craft({
 	recipe = "default:stone",
 	cooktime = 5
 })
+
+-- Compressed gravel
+minetest.register_craft({
+	type = "shapeless",
+	output = "gravelsieve:compressed_gravel",
+	recipe = {"default:gravel", "default:gravel", "default:gravel", "default:gravel"}
+})
