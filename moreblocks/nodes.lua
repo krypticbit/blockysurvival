@@ -136,6 +136,12 @@ local nodes = {
 	},
 	["stone_tile"] = {
 		description = S("Stone Tile"),
+		paramtype2 = "color",
+		palette = "unifieddyes_palette_extended.png",
+		place_param2 = 240,
+		on_construct = unifieddyes.on_construct,
+		after_place_node = unifieddyes.recolor_on_place,
+		after_dig_node = unifieddyes.after_dig_node,
 		groups = {stone = 1, cracky = 3},
 		is_ground_content = false,
 		sounds = sound_stone,
