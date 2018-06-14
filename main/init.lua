@@ -1,15 +1,24 @@
 -- Ties many of the mods together
 -- Written by BillyS
 
-local modp = minetest.get_modpath("core")
+main = {}
+
+local modp = minetest.get_modpath("main")
 dofile(modp .. "/sunlight.lua")
+dofile(modp .. "/creative_punishments.lua")
+
+-- Cleanup
+minetest.register_alias("core:honey_bottle", "main:honey_bottle")
+minetest.register_alias("core:fake_stone", "main:fake_stone")
+minetest.register_alias("core:marble", "main:marble")
+minetest.register_alias("core:marble_block", "main:marble_block")
 
 -- Honey bottle
-minetest.register_node("core:honey_bottle", {
+minetest.register_node("main:honey_bottle", {
 	description = "Bottle of Honey",
 	drawtype = "plantlike",
-	tiles = {"core_honey_bottle.png"},
-	inventory_image = "core_honey_bottle.png",
+	tiles = {"main_honey_bottle.png"},
+	inventory_image = "main_honey_bottle.png",
 	paramtype = "light",
 	is_ground_content = false,
 	walkable = false,
@@ -23,7 +32,7 @@ minetest.register_node("core:honey_bottle", {
 
 minetest.register_craft({
 	type = "shapeless",
-	output = "core:honey_bottle",
+	output = "main:honey_bottle",
 	recipe = {"vessels:glass_bottle", "xdecor:honey", "xdecor:honey", "xdecor:honey", "xdecor:honey", "xdecor:honey", "xdecor:honey", "xdecor:honey", "xdecor:honey"}
 })
 
@@ -51,7 +60,7 @@ minetest.override_item("default:chest_open", {allow_metadata_inventory_take = al
 minetest.override_item("default:chest", {allow_metadata_inventory_take = allowWithProtection, allow_metadata_inventory_put = allowWithProtection, allow_metadata_inventory_move = allowMoveWithProtection})
 
 -- Trap stone
-minetest.register_node("core:fake_stone", {
+minetest.register_node("main:fake_stone", {
 	description = "Fake Stone",
 	tiles = {"default_stone.png"},
 	walkable = false,
@@ -61,38 +70,38 @@ minetest.register_node("core:fake_stone", {
 -- Marble
 local marble = {
 	description = "Marble",
-	tiles = {"core_marble.png"},
+	tiles = {"main_marble.png"},
 	groups = {cracky = 3}
 }
 
 local marble = {
 	description = "Marble",
-	tiles = {"core_marble.png"},
+	tiles = {"main_marble.png"},
 	groups = {cracky = 3}
 }
 
 local marble_block = {
 	description = "Marble Block",
-	tiles = {"core_marble_block.png"},
+	tiles = {"main_marble_block.png"},
 	groups = {cracky = 3}
 }
 
-minetest.register_node("core:marble", marble)
-stairsplus:register_all("core", "marble", "core:marble", marble)
+minetest.register_node("main:marble", marble)
+stairsplus:register_all("main", "marble", "main:marble", marble)
 
-minetest.register_node("core:marble_block", marble_block)
-stairsplus:register_all("core", "marble_block", "core:marble_block", marble_block)
+minetest.register_node("main:marble_block", marble_block)
+stairsplus:register_all("main", "marble_block", "main:marble_block", marble_block)
 
 minetest.register_craft({
-	output = "core:marble_block 9",
-	recipe = {{"core:marble", "core:marble", "core:marble"},
-			  {"core:marble", "core:marble", "core:marble"},
-			  {"core:marble", "core:marble", "core:marble"}}
+	output = "main:marble_block 9",
+	recipe = {{"main:marble", "main:marble", "main:marble"},
+			  {"main:marble", "main:marble", "main:marble"},
+			  {"main:marble", "main:marble", "main:marble"}}
 })
 
 minetest.register_craft({
 	type = "cooking",
-	output = "core:marble",
+	output = "main:marble",
 	recipe = "default:stone",
 	cooktime = 5
 })
