@@ -2,3 +2,5 @@ xdecor
 vessels
 default
 moreblocks
+lib_chatcmdbuilder
+areas
