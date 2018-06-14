@@ -48,6 +48,7 @@ local function allowMoveWithProtection(pos, from_list, from_index, to_list, to_i
 end
 
 minetest.override_item("default:chest_open", {allow_metadata_inventory_take = allowWithProtection, allow_metadata_inventory_put = allowWithProtection, allow_metadata_inventory_move = allowMoveWithProtection})
+minetest.override_item("default:chest", {allow_metadata_inventory_take = allowWithProtection, allow_metadata_inventory_put = allowWithProtection, allow_metadata_inventory_move = allowMoveWithProtection})
 
 -- Trap stone
 minetest.register_node("core:fake_stone", {
