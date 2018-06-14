@@ -142,7 +142,7 @@ local nodes = {
 		on_construct = unifieddyes.on_construct,
 		after_place_node = unifieddyes.recolor_on_place,
 		after_dig_node = unifieddyes.after_dig_node,
-		groups = {stone = 1, cracky = 3, ud2_param2_colorable = 1},
+		groups = {stone = 1, cracky = 3, ud_param2_colorable = 1},
 		is_ground_content = false,
 		sounds = sound_stone,
 	},
@@ -484,12 +484,4 @@ end
 minetest.register_craftitem("moreblocks:sweeper", {
 	description = S("Sweeper"),
 	inventory_image = "moreblocks_sweeper.png",
-})
-
-minetest.register_lbm({
-	name = "moreblocks:fixstonetile",
-	nodenames = {"moreblocks:stone_tile"},
-	action = function(pos, node)
-		minetest.set_node(pos, {name = "moreblocks:stone_tile", param2 = 240})
-	end
 })

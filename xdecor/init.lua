@@ -28,7 +28,6 @@ dofile(modpath.."/src/recipes.lua")
 local subpart = {
 	"chess",
 	"cooking",
-	"enchanting",
 	"hive",
 	"itemframe",
 	"mailbox",
