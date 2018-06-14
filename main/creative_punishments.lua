@@ -17,7 +17,7 @@ main.punishments = {
 			local p = minetest.get_player_by_name(pname)
 			if p then
 				local pos = p:get_pos()
-				if minetest.is_protected(name) then
+				if minetest.is_protected(pname) then
 					minetest.set_node(pos, {name = "fire:basic_flame"})
 				end
 			end
