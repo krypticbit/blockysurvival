@@ -86,17 +86,60 @@ local marble_block = {
 	groups = {cracky = 3}
 }
 
+local marble_mini_brick = {
+	description = "Marble Mini-Brick",
+	tiles = {"main_marble_mini_brick.png"},
+	groups = {cracky = 3}
+}
+
+local marble_base = {
+	description = "Marble Base",
+	tiles = {"main_marble_base.png"},
+	groups = {cracky = 3}
+}
+
+local marble_column = {
+	description = "Marble Column",
+	tiles = {"main_marble.png", "main_marble.png", "main_marble_column.png", "main_marble_column.png", "main_marble_column.png", "main_marble_column.png"},
+	groups = {cracky = 3}
+}
+
 minetest.register_node("main:marble", marble)
 stairsplus:register_all("main", "marble", "main:marble", marble)
 
 minetest.register_node("main:marble_block", marble_block)
 stairsplus:register_all("main", "marble_block", "main:marble_block", marble_block)
 
+minetest.register_node("main:marble_mini_brick", marble_mini_brick)
+stairsplus:register_all("main", "marble_mini_brick", "main:marble_mini_brick", marble_mini_brick)
+
+minetest.register_node("main:marble_base", marble_base)
+stairsplus:register_all("main", "marble_base", "main:marble_base", marble_base)
+
+minetest.register_node("main:marble_column", marble_column)
+stairsplus:register_all("main", "marble_column", "main:marble_column", marble_column)
+
 minetest.register_craft({
 	output = "main:marble_block 9",
 	recipe = {{"main:marble", "main:marble", "main:marble"},
 			  {"main:marble", "main:marble", "main:marble"},
 			  {"main:marble", "main:marble", "main:marble"}}
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "main:marble_mini_brick 4",
+	recipe = {"main:marble", "main:marble", "main:marble", "main:marble"}
+})
+
+minetest.register_craft({
+	output = "main:marble_base 3",
+	recipe = {{"", "", ""}, {"", "", ""}, {"main:marble", "main:marble", "main:marble"}}
+})
+
+minetest.register_craft({
+	output = "main:marble_column 3",
+	recipe = {{"main:marble", "", ""}, {"main:marble", "", ""}, {"main:marble", "", ""}}
 })
 
 minetest.register_craft({
