@@ -5,7 +5,7 @@ main = {}
 
 local modp = minetest.get_modpath("main")
 dofile(modp .. "/sunlight.lua")
-dofile(modp .. "/creative_punishments.lua")
+--dofile(modp .. "/creative_punishments.lua")
 
 -- Cleanup
 minetest.register_alias("core:honey_bottle", "main:honey_bottle")
