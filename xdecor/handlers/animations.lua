@@ -49,5 +49,3 @@ function xdecor.sit_dig(pos, digger)
 	end
 	return true
 end
-{above = {y = 1}, below = {y = 0}}
-{param2 = 0}
