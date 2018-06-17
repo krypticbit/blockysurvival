@@ -497,6 +497,7 @@ local msg_override = {
 								if target ~= name then
 									-- Sending the message
 									minetest.chat_send_player(target, format_message(private_message_string, { from_player = name, message = msg }))
+									minetest.log("action", "PM from " .. name .. " to " .. target .. ": " .. msg)
 									if enable_sounds then
 										minetest.sound_play(private_message_sound, { to_player = target, gain = 1.0 } )
 									end
