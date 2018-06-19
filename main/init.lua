@@ -57,7 +57,6 @@ local function allowMoveWithProtection(pos, from_list, from_index, to_list, to_i
 end
 
 minetest.override_item("default:chest_open", {allow_metadata_inventory_take = allowWithProtection, allow_metadata_inventory_put = allowWithProtection, allow_metadata_inventory_move = allowMoveWithProtection})
-minetest.override_item("default:chest", {allow_metadata_inventory_take = allowWithProtection, allow_metadata_inventory_put = allowWithProtection, allow_metadata_inventory_move = allowMoveWithProtection})
 
 -- Trap stone
 minetest.register_node("main:fake_stone", {
@@ -119,6 +118,65 @@ stairsplus:register_all("main", "marble_base", "main:marble_base", marble_base)
 minetest.register_node("main:marble_column", marble_column)
 stairsplus:register_all("main", "marble_column", "main:marble_column", marble_column)
 
+-- Marble pillars
+minetest.register_node("main:marble_pillar", {
+	description = "Marble Pillar",
+	drawtype = "nodebox",
+	tiles = {"main_marble.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	is_ground_content = true,
+	groups = group,
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.1875, 0.5, 0.5, 0.1875},
+			{-0.4375, -0.5, -0.3125, 0.4375, 0.5, 0.3125},
+			{-0.375, -0.5, -0.375, 0.375, 0.5, 0.375},
+			{-0.3125, -0.5, -0.4375, 0.3125, 0.5, 0.4375},
+			{-0.1875, -0.5, -0.5, 0.1875, 0.5, 0.5},
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5,-0.5,-0.5,0.5,0.5,0.5},
+		}
+	},
+	on_place = minetest.rotate_node,
+})
+
+minetest.register_node("main:marble_pillar_base", {
+	description = "Marble Pillar Base",
+	drawtype = "nodebox",
+	tiles = {"main_marble.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	is_ground_content = true,
+	groups = group,
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.1875, 0.5, 0.5, 0.1875},
+			{-0.4375, -0.5, -0.3125, 0.4375, 0.5, 0.3125},
+			{-0.375, -0.5, -0.375, 0.375, 0.5, 0.375},
+			{-0.3125, -0.5, -0.4375, 0.3125, 0.5, 0.4375},
+			{-0.1875, -0.5, -0.5, 0.1875, 0.5, 0.5},
+			{-0.5, -0.5, -0.5, 0.5, -0.1875, 0.5},
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5,-0.5,-0.5,0.5,0.5,0.5},
+		}
+	},
+	on_place = minetest.rotate_node,
+})
+
+-- Marble crafts
 minetest.register_craft({
 	output = "main:marble_block 9",
 	recipe = {{"main:marble", "main:marble", "main:marble"},
@@ -140,6 +198,18 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "main:marble_column 3",
 	recipe = {{"main:marble", "", ""}, {"main:marble", "", ""}, {"main:marble", "", ""}}
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "main:marble_pillar",
+	recipe = {"main:marble_column"}
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "main:marble_pillar_base",
+	recipe = {"main:marble_pillar", "main:marble"}
 })
 
 minetest.register_craft({
