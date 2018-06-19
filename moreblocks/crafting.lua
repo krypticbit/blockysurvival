@@ -156,7 +156,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = "moreblocks:stone_tile 9",
+	output = "moreblocks:stone_tile 9 0 \"\\u0001palette_index\\u0002240\\u0003\"",
 	recipe = {
 		{"default:cobble", "default:cobble", "default:cobble"},
 		{"default:cobble", "default:stone", "default:cobble"},
