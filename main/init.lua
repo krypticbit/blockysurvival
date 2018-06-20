@@ -145,6 +145,7 @@ minetest.register_node("main:marble_pillar", {
 		}
 	},
 	on_place = minetest.rotate_node,
+	groups = {cracky = 3}
 })
 
 minetest.register_node("main:marble_pillar_base", {
@@ -174,6 +175,7 @@ minetest.register_node("main:marble_pillar_base", {
 		}
 	},
 	on_place = minetest.rotate_node,
+	groups = {cracky = 3}
 })
 
 -- Marble crafts
