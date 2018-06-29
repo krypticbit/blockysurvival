@@ -408,3 +408,13 @@ plg.setports = function(pos, A, B, C, D) -- sets states of OUTPUT
 		if D then mesecon.receptor_on(pos, ru) else mesecon.receptor_off(pos, ru) end
 	end
 end
+
+
+minetest.register_craft({
+	output = "mesecons_fpga:fpga0000 2",
+	recipe = {
+		{'group:mesecon_conductor_craftable', 'group:mesecon_conductor_craftable'},
+		{'mesecons_materials:silicon', 'mesecons_materials:silicon'},
+		{'group:mesecon_conductor_craftable', 'group:mesecon_conductor_craftable'},
+	}
+})

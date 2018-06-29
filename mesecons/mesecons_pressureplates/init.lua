@@ -69,7 +69,11 @@ function mesecon.register_pressure_plate(basename, description, textures_off, te
 		groups = {snappy = 2, oddly_breakable_by_hand = 3, not_in_creative_inventory = 1},
 		tiles = textures_on
 	})
-	
+
+	minetest.register_craft({
+		output = basename .. "_off",
+		recipe = recipe,
+	})
 end
 
 mesecon.register_pressure_plate(

@@ -227,3 +227,23 @@ register_wires()
 -- ##############
 -- ## Crafting ##
 -- ##############
+minetest.register_craft({
+	type = "cooking",
+	output = "mesecons:wire_00000000_off 2",
+	recipe = "default:mese_crystal_fragment",
+	cooktime = 3,
+})
+
+minetest.register_craft({
+	type = "cooking",
+	output = "mesecons:wire_00000000_off 18",
+	recipe = "default:mese_crystal",
+	cooktime = 15,
+})
+
+minetest.register_craft({
+	type = "cooking",
+	output = "mesecons:wire_00000000_off 162",
+	recipe = "default:mese",
+	cooktime = 30,
+})

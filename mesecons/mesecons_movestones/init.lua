@@ -153,6 +153,62 @@ mesecon.register_movestone("mesecons_movestones:sticky_movestone_vertical", {
 	sounds = default.node_sound_stone_defaults(),
 }, true, true)
 
+
+-- crafting:
+-- base recipe:
+minetest.register_craft({
+	output = "mesecons_movestones:movestone 2",
+	recipe = {
+		{"default:stone", "default:stone", "default:stone"},
+		{"group:mesecon_conductor_craftable", "group:mesecon_conductor_craftable", "group:mesecon_conductor_craftable"},
+		{"default:stone", "default:stone", "default:stone"},
+	}
+})
+
+-- conversation:
+minetest.register_craft({
+	type = "shapeless",
+	output = "mesecons_movestones:movestone",
+	recipe = {"mesecons_movestones:movestone_vertical"},
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "mesecons_movestones:movestone_vertical",
+	recipe = {"mesecons_movestones:movestone"},
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "mesecons_movestones:sticky_movestone",
+	recipe = {"mesecons_movestones:sticky_movestone_vertical"},
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "mesecons_movestones:sticky_movestone_vertical",
+	recipe = {"mesecons_movestones:sticky_movestone"},
+})
+
+-- make sticky:
+minetest.register_craft({
+	output = "mesecons_movestones:sticky_movestone",
+	recipe = {
+		{"mesecons_materials:glue", "mesecons_movestones:movestone", "mesecons_materials:glue"},
+	}
+})
+
+minetest.register_craft({
+	output = "mesecons_movestones:sticky_movestone_vertical",
+	recipe = {
+		{"mesecons_materials:glue"},
+		{"mesecons_movestones:movestone_vertical"},
+		{"mesecons_materials:glue"},
+	}
+})
+
+
+-- legacy code:
 minetest.register_alias("mesecons_movestones:movestone_active",
 		"mesecons_movestones:movestone")
 minetest.register_alias("mesecons_movestones:sticky_movestone_active",

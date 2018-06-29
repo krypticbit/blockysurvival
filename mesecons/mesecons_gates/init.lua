@@ -101,6 +101,7 @@ local function register_gate(name, inputnumber, assess, recipe, description)
 		}}
 	})
 
+	minetest.register_craft({output = basename.."_off", recipe = recipe})
 end
 
 register_gate("diode", 1, function (input) return input end,

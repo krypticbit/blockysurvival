@@ -23,3 +23,11 @@ minetest.register_node("mesecons_powerplant:power_plant", {
 	on_blast = mesecon.on_blastnode,
 })
 
+minetest.register_craft({
+	output = "mesecons_powerplant:power_plant 1",
+	recipe = {
+		{"group:mesecon_conductor_craftable"},
+		{"group:mesecon_conductor_craftable"},
+		{"group:sapling"},
+	}
+})

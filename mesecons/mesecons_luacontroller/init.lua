@@ -864,3 +864,13 @@ minetest.register_node(BASENAME .. "_burnt", {
 ------------------------
 -- Craft Registration --
 ------------------------
+
+minetest.register_craft({
+	output = BASENAME.."0000 2",
+	recipe = {
+		{'mesecons_materials:silicon', 'mesecons_materials:silicon', 'group:mesecon_conductor_craftable'},
+		{'mesecons_materials:silicon', 'mesecons_materials:silicon', 'group:mesecon_conductor_craftable'},
+		{'group:mesecon_conductor_craftable', 'group:mesecon_conductor_craftable', ''},
+	}
+})
+

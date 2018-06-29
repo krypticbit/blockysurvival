@@ -34,6 +34,12 @@ local torch_get_input_rules = function(node)
 	return rotate_torch_rules(rules, node.param2)
 end
 
+minetest.register_craft({
+	output = "mesecons_torch:mesecon_torch_on 4",
+	recipe = {
+	{"group:mesecon_conductor_craftable"},
+	{"default:stick"},}
+})
 
 local torch_selectionbox =
 {

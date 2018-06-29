@@ -57,3 +57,11 @@ minetest.register_node("mesecons_lamp:lamp_off", {
 	on_blast = mesecon.on_blastnode,
 })
 
+minetest.register_craft({
+	output = "mesecons_lamp:lamp_off 1",
+	recipe = {
+		{"", "default:glass", ""},
+		{"group:mesecon_conductor_craftable", "default:steel_ingot", "group:mesecon_conductor_craftable"},
+		{"", "default:glass", ""},
+	}
+})

@@ -43,3 +43,10 @@ mesecon.register_node("mesecons_blinkyplant:blinky_plant", {
 	groups = {dig_immediate=3, not_in_creative_inventory=1},
 	mesecons = {receptor = { state = mesecon.state.on }}
 })
+
+minetest.register_craft({
+	output = "mesecons_blinkyplant:blinky_plant_off 1",
+	recipe = {	{"","group:mesecon_conductor_craftable",""},
+			{"","group:mesecon_conductor_craftable",""},
+			{"group:sapling","group:sapling","group:sapling"}}
+})

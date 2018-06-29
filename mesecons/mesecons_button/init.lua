@@ -97,3 +97,10 @@ minetest.register_node("mesecons_button:button_on", {
 	on_timer = mesecon.button_turnoff,
 	on_blast = mesecon.on_blastnode,
 })
+
+minetest.register_craft({
+	output = "mesecons_button:button_off 2",
+	recipe = {
+		{"group:mesecon_conductor_craftable","default:stone"},
+	}
+})

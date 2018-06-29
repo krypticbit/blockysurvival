@@ -77,3 +77,12 @@ minetest.register_node("mesecons_insulated:insulated_off", {
 	on_blast = mesecon.on_blastnode,
 	on_rotate = screwdriver_exists and screwdriver.rotate_simple,
 })
+
+minetest.register_craft({
+	output = "mesecons_insulated:insulated_off 3",
+	recipe = {
+		{"mesecons_materials:fiber", "mesecons_materials:fiber", "mesecons_materials:fiber"},
+		{"mesecons:wire_00000000_off", "mesecons:wire_00000000_off", "mesecons:wire_00000000_off"},
+		{"mesecons_materials:fiber", "mesecons_materials:fiber", "mesecons_materials:fiber"},
+	}
+})

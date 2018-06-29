@@ -62,6 +62,14 @@ minetest.register_node("mesecons_solarpanel:solar_panel_off", {
 	on_blast = mesecon.on_blastnode,
 })
 
+minetest.register_craft({
+	output = "mesecons_solarpanel:solar_panel_off 1",
+	recipe = {
+		{"mesecons_materials:silicon", "mesecons_materials:silicon"},
+		{"mesecons_materials:silicon", "mesecons_materials:silicon"},
+	}
+})
+
 minetest.register_abm(
 	{nodenames = {"mesecons_solarpanel:solar_panel_off"},
 	interval = 1,

@@ -47,6 +47,15 @@ function mesecon.lightstone_add(name, base_item, texture_off, texture_on, desc)
 		}},
 		on_blast = mesecon.on_blastnode,
 	})
+
+	minetest.register_craft({
+		output = "mesecons_lightstone:lightstone_" .. name .. "_off",
+		recipe = {
+			{"",base_item,""},
+			{base_item,"default:torch",base_item},
+			{"","group:mesecon_conductor_craftable",""}
+		}
+	})
 end
 
 

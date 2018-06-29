@@ -464,6 +464,24 @@ mesecon.register_mvps_stopper("mesecons_pistons:piston_normal_on", piston_get_st
 mesecon.register_mvps_stopper("mesecons_pistons:piston_sticky_on", piston_get_stopper)
 
 
+--craft recipes
+minetest.register_craft({
+	output = "mesecons_pistons:piston_normal_off 2",
+	recipe = {
+		{"group:wood",     "group:wood",                        "group:wood"},
+		{"default:cobble", "default:steel_ingot",               "default:cobble"},
+		{"default:cobble", "group:mesecon_conductor_craftable", "default:cobble"},
+	}
+})
+
+minetest.register_craft({
+	output = "mesecons_pistons:piston_sticky_off",
+	recipe = {
+		{"mesecons_materials:glue"},
+		{"mesecons_pistons:piston_normal_off"},
+	}
+})
 
 
+-- load legacy code
 dofile(minetest.get_modpath("mesecons_pistons")..DIR_DELIM.."legacy.lua")

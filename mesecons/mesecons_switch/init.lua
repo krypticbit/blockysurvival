@@ -27,3 +27,10 @@ mesecon.register_node("mesecons_switch:mesecon_switch", {
 	mesecons = {receptor = { state = mesecon.state.on }}
 })
 
+minetest.register_craft({
+	output = "mesecons_switch:mesecon_switch_off 2",
+	recipe = {
+		{"default:steel_ingot", "default:cobble", "default:steel_ingot"},
+		{"group:mesecon_conductor_craftable","", "group:mesecon_conductor_craftable"},
+	}
+})

@@ -92,3 +92,12 @@ nodenames = {"mesecons_hydroturbine:hydro_turbine_on"},
 	end,
 })
 
+minetest.register_craft({
+	output = "mesecons_hydroturbine:hydro_turbine_off 2",
+	recipe = {
+	{"","default:stick", ""},
+	{"default:stick", "default:steel_ingot", "default:stick"},
+	{"","default:stick", ""},
+	}
+})
+

@@ -17,6 +17,15 @@ minetest.register_node("mesecons_noteblock:noteblock", {
 	on_blast = mesecon.on_blastnode,
 })
 
+minetest.register_craft({
+	output = "mesecons_noteblock:noteblock 1",
+	recipe = {
+		{"group:wood", "group:wood", "group:wood"},
+		{"group:mesecon_conductor_craftable", "default:steel_ingot", "group:mesecon_conductor_craftable"},
+		{"group:wood", "group:wood", "group:wood"},
+	}
+})
+
 local soundnames = {
 	[0] = "mesecons_noteblock_csharp",
 	"mesecons_noteblock_d",

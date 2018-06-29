@@ -54,3 +54,11 @@ mesecon.register_node("mesecons_walllever:wall_lever", {
 	groups = {dig_immediate = 2, mesecon_needs_receiver = 1, not_in_creative_inventory = 1}
 })
 
+minetest.register_craft({
+	output = "mesecons_walllever:wall_lever_off 2",
+	recipe = {
+	    {"group:mesecon_conductor_craftable"},
+		{"default:stone"},
+		{"default:stick"},
+	}
+})
