@@ -196,9 +196,11 @@ minetest.register_alias("travelnet:elevator_top", "air")
 --                }
 --        })
 --else
-	minetest.register_craft({
-	        output = "travelnet:elevator",
-		recipe = travelnet.elevator_recipe,
+
+--	minetest.register_craft({
+--	        output = "travelnet:elevator",
+--		recipe = travelnet.elevator_recipe,
 	})
+
 --end
 
