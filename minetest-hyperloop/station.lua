@@ -451,7 +451,7 @@ minetest.register_node("hyperloop:pod_wall", {
 		"hyperloop_skin.png",
 	},
 	paramtype2 = "facedir",
-	groups = {},
+	groups = {cracky = 2},
 	is_ground_content = false,
 	sounds = default.node_sound_metal_defaults(),
 })
