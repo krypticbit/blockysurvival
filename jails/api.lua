@@ -16,6 +16,10 @@ function jails:jail(playerName, jailName)
 	if player then
 		pos = player:getpos()
 		player:setpos(jail.pos)
+		if beds ~= nil then
+			beds.spawn[player:get_player_name()] = jail.pos
+			beds.save_spawns()
+		end
 		if jails.announce then
 			minetest.chat_send_all(playerName.." has been jailed!")
 		else
