@@ -342,7 +342,7 @@ function technic.chests:register(name, data)
 			if not minetest.is_protected(pos, player_name) then
 				for _, stack in pairs(inv:get_list("main")) do
 					if not stack:is_empty() then
-						return inv:remove_item("main", stack)
+						return inv:remove_item("main", stack:get_name())
 					end
 				end
 			end
