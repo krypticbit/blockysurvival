@@ -337,7 +337,7 @@ function technic.chests:register(name, data)
 	minetest.register_node(":"..nn, def)
 	
 	tubelib.register_node(nn, nil, {
-		on_pull_item = function(pos, side, player_name) {
+		on_pull_item = function(pos, side, player_name) 
 			local inv = minetest.get_meta(pos):get_inventory()
 			if not minetest.is_protected(pos, player_name)
 				for _, stack in pairs(inv:get_list("main")) do
@@ -347,25 +347,25 @@ function technic.chests:register(name, data)
 				end
 			end
 			return nil
-		},
-		on_push_item = function(pos, side, item, player_name) {
+		end,
+		on_push_item = function(pos, side, item, player_name)
 			local inv = minetest.get_meta(pos):get_inventory()
 			if inv:room_for_item("main", item) then
 				inv:add_item("main", item)
 				return true
 			end
 			return false
-		},
-		on_unpull_item = function(pos, side, item, player_name) {
+		end,
+		on_unpull_item = function(pos, side, item, player_name)
 			local inv = minetest.get_meta(pos):get_inventory()
 			if inv:room_for_item("main", item) then
 				inv:add_item("main", item)
 				return true
 			end
 			return false
-		},
-		on_recv_message = function(pos, topic, payload) {
-		}
+		end,
+		on_recv_message = function(pos, topic, payload)
+		end
 	})
 
 	if data.color then
