@@ -335,6 +335,38 @@ function technic.chests:register(name, data)
 
 	local nn = "technic:"..name:lower()..(data.locked and "_locked" or "").."_chest"
 	minetest.register_node(":"..nn, def)
+	
+	tubelib.register_node(nn, nil, {
+		on_pull_item = function(pos, side, player_name) {
+			local inv = minetest.get_meta(pos):get_inventory()
+			if not minetest.is_protected(pos, player_name)
+				for _, stack in pairs(inv:get_list("main")) do
+					if not stack:is_empty() then
+						return inv:remove_item("main", stack)
+					end
+				end
+			end
+			return nil
+		},
+		on_push_item = function(pos, side, item, player_name) {
+			local inv = minetest.get_meta(pos):get_inventory()
+			if inv:room_for_item("main", item) then
+				inv:add_item("main", item)
+				return true
+			end
+			return false
+		},
+		on_unpull_item = function(pos, side, item, player_name) {
+			local inv = minetest.get_meta(pos):get_inventory()
+			if inv:room_for_item("main", item) then
+				inv:add_item("main", item)
+				return true
+			end
+			return false
+		},
+		on_recv_message = function(pos, topic, payload) {
+		}
+	})
 
 	if data.color then
 		local mk_front
