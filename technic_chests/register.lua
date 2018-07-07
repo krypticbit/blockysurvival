@@ -336,7 +336,7 @@ function technic.chests:register(name, data)
 	local nn = "technic:"..name:lower()..(data.locked and "_locked" or "").."_chest"
 	minetest.register_node(":"..nn, def)
 	
-	tubelib.register_node(nn, nil, {
+	tubelib.register_node(nn, {}, {
 		on_pull_item = function(pos, side, player_name) 
 			local inv = minetest.get_meta(pos):get_inventory()
 			if not minetest.is_protected(pos, player_name) then
