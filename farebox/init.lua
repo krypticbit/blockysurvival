@@ -78,9 +78,9 @@ minetest.register_on_player_receive_fields(function(player, form, pressed)
 	 if pressed.open or open then	    
 	    minetest.chat_send_player(pname, "Payment accepted.")
 	    if nodename == "farebox:farebox" then
-	       mesecon.receptor_on(pos,farebox.rules)	    
+	       mesecon.receptor_on(pos)	    
 	       minetest.after(1, function (_)
-				 mesecon.receptor_off(pos,farebox.rules)
+				 mesecon.receptor_off(pos)
 				 
 	       end)
 	    elseif nodename == "farebox:faregate" then
