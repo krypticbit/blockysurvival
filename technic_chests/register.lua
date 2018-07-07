@@ -339,7 +339,7 @@ function technic.chests:register(name, data)
 	tubelib.register_node(nn, nil, {
 		on_pull_item = function(pos, side, player_name) 
 			local inv = minetest.get_meta(pos):get_inventory()
-			if not minetest.is_protected(pos, player_name)
+			if not minetest.is_protected(pos, player_name) then
 				for _, stack in pairs(inv:get_list("main")) do
 					if not stack:is_empty() then
 						return inv:remove_item("main", stack)
