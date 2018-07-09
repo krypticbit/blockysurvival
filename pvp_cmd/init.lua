@@ -44,7 +44,7 @@ minetest.register_chatcommand("togglepvp", {
 	description = "Toggles the pvp-mode of a player.",
 	privs = {setpvp = true},
 	func = function(name, param)
-		local player = minetest.get_player_by_name(name)
+		local player = minetest.get_player_by_name(param)
 		if not player then
 			return false, "Player " .. param .. " not found."
 		end
@@ -92,7 +92,7 @@ minetest.register_on_punchplayer(function(player, hitter)
 	end
 	local player_name = player:get_player_name()
 	if no_pvp[player_name] then
-		minetest.chat_send_player(hitter_name, player_name .. " PvP is disable, you n00bish one, type /checkpvp " .. hitter_name .. " before to check if their pvp is enable.")
+		minetest.chat_send_player(hitter_name, player_name .. " PvP is disable, you n00bish one, type /checkpvp " .. player_name .. " before to check if their pvp is enable.")
 		return true
 	end
 end)
