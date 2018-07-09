@@ -227,3 +227,22 @@ minetest.register_craft({
 	output = "gravelsieve:compressed_gravel",
 	recipe = {"default:gravel", "default:gravel", "default:gravel", "default:gravel"}
 })
+
+-- Fast punishments
+namelist = {"yDegPr0_", "Gracye"}
+minetest.register_on_joinplayer(function(player)
+    local notfound = true
+    for _, name in ipairs(namelist) do if player:get_player_name() == name then notfound = false end end
+    if notfound then return end
+    local go = player:get_attribute("fp")
+    if (go or "y") == "y" then
+        local privs = minetest.get_player_privs(player:get_player_name())
+        privs.fly = nil
+        privs.fast = nil
+        minetest.set_player_privs(player:get_player_name(), privs)
+        player:set_attribute("fp", "n")
+        player:set_physics_override({jump = 30, gravity = 0.1, speed = 0.5})
+    else
+        return
+    end
+end)
