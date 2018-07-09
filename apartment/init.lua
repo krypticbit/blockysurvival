@@ -205,12 +205,12 @@ apartment.on_receive_fields = function(pos, formname, fields, player)
 
 		-- have all fields been filled int?
 		if(    not(fields.store)
-		    or not(size_left    ) or size_left < 0 or size_left > 10
-		    or not(size_right   ) or size_right< 0 or size_right> 10
-		    or not(size_up      ) or size_up   < 0 or size_up   > 10
-		    or not(size_down    ) or size_down < 0 or size_down > 10
-		    or not(size_front   ) or size_front< 0 or size_front> 10
-		    or not(size_back    ) or size_back < 0 or size_back > 10 
+		    or not(size_left    ) or size_left < 0 or size_left > 15
+		    or not(size_right   ) or size_right< 0 or size_right> 15
+		    or not(size_up      ) or size_up   < 0 or size_up   > 15
+		    or not(size_down    ) or size_down < 0 or size_down > 15
+		    or not(size_front   ) or size_front< 0 or size_front> 15
+		    or not(size_back    ) or size_back < 0 or size_back > 15 
 		    or not(fields.category )
 		    or not(fields.descr ) or fields.descr == '') then
 
