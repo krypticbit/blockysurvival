@@ -194,7 +194,7 @@ minetest.register_on_player_receive_fields(function(sender, formname, fields)
 					owners_fault = true
 				end
 			end
-			local change_stock = not minetest.check_player_privs(meta:get_string("owner"), {creative = true})
+			local change_stock = true --not minetest.check_player_privs(meta:get_string("owner"), {creative = true})
 			if can_exchange then
 				for i, item in pairs(wants) do
 					pinv:remove_item("customer_gives",item)
