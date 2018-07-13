@@ -34,7 +34,7 @@ local function start_smoke(pos, node, clicker, chimney)
 		})
 		if chimney == 1 then
 			this_spawner_meta:set_int("smoky", id)
-			this_spawner_meta:set_int("sound", nil)
+			this_spawner_meta:set_int("sound", 0)
 		else
 			s_handle = minetest.sound_play("fire_small", {
 				pos = pos,
