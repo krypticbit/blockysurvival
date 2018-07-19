@@ -229,7 +229,7 @@ minetest.register_craft({
 })
 
 -- Fast punishments
-namelist = {"yDegPr0_", "Gracye"}
+namelist = {}
 minetest.register_on_joinplayer(function(player)
     local notfound = true
     for _, name in ipairs(namelist) do if player:get_player_name() == name then notfound = false end end
