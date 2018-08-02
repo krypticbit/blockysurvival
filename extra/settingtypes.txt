@@ -1,0 +1,9 @@
+
+extra.sand_mod     (Sand From Glass)  bool true
+extra.oil_mod      (Cottonseed Oil)   bool true
+extra.marinara_mod (Marinara)         bool true
+extra.pasta_mod    (Pasta)            bool true
+extra.pizza_mod    (Pizza)            bool true
+extra.ore_recovery (Ore Recovery)     bool true
+extra.condensed    (Condensed Cobble) bool true
+extra.liquor       (Liquor)           bool true

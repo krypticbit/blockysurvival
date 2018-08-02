@@ -1,0 +1,48 @@
+# Translation template for extra mod by dhausmig
+
+# nodes.lua
+Condensed Cobblestone =
+Bottle of Tequila =
+Bottle of Rum =
+
+# init.lua
+Raw Meat =
+Cooked Meat =
+
+# craftitems.lua
+Cottonseed Oil =
+Potato Crisps =
+French Fries =
+Onion Rings =
+Blooming Onion =
+Fish Sticks =
+Ground Meat =
+Ground Meat Patty =
+Grilled Meat Patty =
+Tomato Slice =
+Onion Slice =
+Potato Slice =
+Hamburger =
+Double Cheeseburger =
+Raw Corn Dog =
+Corn_dog =
+Raw Meatloaf =
+Meatloaf =
+Flour Tortilla =
+Taco =
+Super Taco =
+Quesadilla =
+Pasta =
+Pepperoni =
+Garlic Bread Dough =
+Garlic Bread =
+Jar of Marinara Sauce =
+Spaghetti =
+Lasagna =
+Cheese Pizza =
+Jar of Salsa =
+Pepperoni Pizza =
+Deluxe Pizza =
+Pineapple Pizza =
+Corn Meal =
+Cornbread =

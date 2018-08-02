@@ -1,0 +1,10 @@
+-- This is the place to configure the features of the extra mod
+
+extra.sand_mod     = true
+extra.oil_mod      = true
+extra.marinara_mod = true
+extra.pasta_mod    = true
+extra.pizza_mod    = true
+extra.ore_recovery = true
+extra.condensed    = true
+extra.liquor       = true
