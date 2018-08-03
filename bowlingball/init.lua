@@ -5,7 +5,7 @@ rebounds if a sudden stop is detected.
 ]]
 
 -- returns true if the vector was modified
-local dampening = -0.7
+local dampening = -0.4
 local rebound_if_zero = function(oldv, newv, k)
 	local v = newv[k]
 	--print("# current velocity", k, v)
@@ -19,7 +19,75 @@ local rebound_if_zero = function(oldv, newv, k)
 	return change
 end
 
+-- ball radius - used for some checking around the ball
+local r = 0.3
+-- forward declaration of names used in varios functions below.
+local ballreturn = "bowlingball:return"
+local n = "bowlingball:ball"
+
+
+
+-- registration of the bowling ball return block.
+-- this node is passive, having no logic of it's own;
+-- it serves only as a marker for the entity.
+-- see the handle_return() function below to see this behaviour.
+local side = "bowlingball_return_side.png"
+local hole = "bowlingball_return_hole.png"
+minetest.register_node(ballreturn, {
+	description = "Bowling ball capture block (roll ball over this)",
+	tiles = { hole, hole, side, side, side, side },
+	groups = { oddly_breakable_by_hand = 3 },
+})
+
+
+
+-- handle the ball return node being beneath us.
+local offset = r + 0.0001	-- avoid node boundary issues
+-- boundary check
+local b = function(v)
+	return (v % 1.0) == 0.5
+end
+local round = function(v)
+	return math.floor(v + 0.5)
+end
+local rp_mut = function(p)
+	p.x = round(p.x)
+	p.y = round(p.y)
+	p.z = round(p.z)
+	return p
+end
+local handle_return = function(object)
+	local pos = object:get_pos()
+	pos.y = pos.y - offset
+	-- I've had enough of boundary rounding issues...
+	if b(pos.x) or b(pos.y) or b(pos.z) then
+		return false
+	end
+
+	local node = minetest.get_node(pos)
+	local act = (node.name == ballreturn)
+
+	if act then
+		-- spawn an item just below that block.
+		pos = rp_mut(pos)
+		pos.y = pos.y - 0.501
+		minetest.add_item(pos, n)
+	end
+
+	return act
+end
+
+
+
 local step = function(self, dtime)
+	-- first and foremost: check if the block below us is ball return node.
+	-- if this indicates that it did anything,
+	-- perform no further action and delete ourselves.
+	if (handle_return(self.object)) then
+		self.object:remove()
+		return
+	end
+
 	-- if this is the first tick,
 	-- we won't have a previous velocity yet, so skip the processing
 	local oldv = self.previous
@@ -56,7 +124,6 @@ end
 
 
 -- let the player retrieve the item by right clicking.
-local n = "bowlingball:ball"
 local on_rightclick = function(self, clicker)
 	-- check if the player has room in their inventory and add item if so.
 	-- if it did fit, then remove the entity.
@@ -83,7 +150,6 @@ end
 
 
 local tex = "bowlingball_ball.png"
-local r = 0.3
 minetest.register_entity(n, {
 	visual = "sprite",
 	visual_size = {x=0.75,y=0.75},
@@ -100,8 +166,11 @@ minetest.register_entity(n, {
 
 
 -- a throwable ball item.
+-- fix a complaint about itemstacks from on_use despite clearly returning one...
+-- give it an itemstring instead to keep it happy.
 local take_one = function(stack)
 	stack:set_count(stack:get_count() - 1)
+	return stack:to_string()
 end
 
 local head = 1.6
@@ -123,4 +192,8 @@ minetest.register_craftitem(n, {
 	on_use = use,
 	inventory_image = tex,
 })
+-- optional crafts to follow
+local mp = minetest.get_modpath(minetest.get_current_modname()).."/"
+dofile(mp.."crafting.lua")
+
 
