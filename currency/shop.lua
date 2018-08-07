@@ -194,18 +194,13 @@ minetest.register_on_player_receive_fields(function(sender, formname, fields)
 					owners_fault = true
 				end
 			end
-			local change_stock = true --not minetest.check_player_privs(meta:get_string("owner"), {creative = true})
 			if can_exchange then
 				for i, item in pairs(wants) do
 					pinv:remove_item("customer_gives",item)
-					if change_stock then
-						minv:add_item("customers_gave",item)
-					end
+					minv:add_item("customers_gave",item)
 				end
 				for i, item in pairs(gives) do
-					if change_stock then
-						minv:remove_item("stock",item)
-					end
+					minv:remove_item("stock",item)
 					pinv:add_item("customer_gets",item)
 				end
 				minetest.chat_send_player(name,S("Exchanged!"))

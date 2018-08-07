@@ -16,8 +16,8 @@ local function start_smoke(pos, node, clicker, chimney)
 			end, s_handle)
 		end
 		minetest.delete_particlespawner(id)
-		this_spawner_meta:set_int("smoky", nil)
-		this_spawner_meta:set_int("sound", nil)
+		this_spawner_meta:set_int("smoky", 0)
+		this_spawner_meta:set_int("sound", 0)
 		return
 	end
 
@@ -62,8 +62,8 @@ local function stop_smoke(pos)
 		end, s_handle)
 	end
 
-	this_spawner_meta:set_int("smoky", nil)
-	this_spawner_meta:set_int("sound", nil)
+	this_spawner_meta:set_int("smoky", 0)
+	this_spawner_meta:set_int("sound", 0)
 end
 
 minetest.register_node("fake_fire:ice_fire", {
