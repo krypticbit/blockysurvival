@@ -83,11 +83,11 @@ minetest.register_craft({
 })
 
 
-dofile(minetest.get_modpath("tubelib") .. "/tubes.lua")
+dofile(minetest.get_modpath("tubelib") .. "/tubes1.lua")
+dofile(minetest.get_modpath("tubelib") .. "/tubes2.lua")
 dofile(minetest.get_modpath("tubelib") .. "/command.lua")
 dofile(minetest.get_modpath("tubelib") .. "/states.lua")
 dofile(minetest.get_modpath("tubelib") .. "/pusher.lua")
-dofile(minetest.get_modpath("tubelib") .. "/pusher_admin.lua")
 dofile(minetest.get_modpath("tubelib") .. "/blackhole.lua")
 dofile(minetest.get_modpath("tubelib") .. "/button.lua")
 dofile(minetest.get_modpath("tubelib") .. "/lamp.lua")

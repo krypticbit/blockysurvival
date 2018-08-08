@@ -213,6 +213,8 @@ local function keep_running(pos, elapsed)
 	local inv = meta:get_inventory()
 	local list = inv:get_list("src")
 	local kvSrc = invlist_content_as_kvlist(list)
+	local counter = minetest.deserialize(meta:get_string("item_counter")) or 
+			{red=0, green=0, blue=0, yellow=0}
 	
 	-- calculate the filter settings only once
 	local hash = minetest.hash_node_position(pos)
@@ -241,6 +243,7 @@ local function keep_running(pos, elapsed)
 					if not tubelib.push_items(pos, side, item, player_name) then -- <<=== tubelib
 						tubelib.put_item(meta, "src", item)
 					else
+						counter[listname] = counter[listname] + 1
 						busy = true
 					end
 				end
@@ -257,6 +260,7 @@ local function keep_running(pos, elapsed)
 					if not tubelib.push_items(pos, side, item, player_name) then -- <<=== tubelib
 						tubelib.put_item(meta, "src", item)
 					else
+						counter[listname] = counter[listname] + 1
 						busy = true
 					end
 				end
@@ -276,6 +280,7 @@ local function keep_running(pos, elapsed)
 		end
 	end
 	
+	meta:set_string("item_counter", minetest.serialize(counter))
 	meta:set_int("running", running)
 	return true
 end
@@ -311,6 +316,24 @@ local function on_receive_fields(pos, formname, fields, player)
 	end
 end
 
+-- tubelib command to turn on/off filter channels
+local function change_filter_settings(pos, slot, val)
+	local slots = {["red"] = 1, ["green"] = 2, ["blue"] = 3, ["yellow"] = 4}
+	local meta = minetest.get_meta(pos)
+	local filter = minetest.deserialize(meta:get_string("filter"))
+	local num = slots[slot] or 1
+	if num >= 1 and num <= 4 then
+		filter[num] = val == "on"
+	end
+	meta:set_string("filter", minetest.serialize(filter))
+	
+	filter_settings(pos)
+	
+	local running = meta:get_int("running")
+	meta:set_string("formspec", distributor_formspec(tubelib.state(running), filter))
+	return true
+end
+
 minetest.register_node("tubelib:distributor", {
 	description = "Tubelib Distributor",
 	tiles = {
@@ -339,6 +362,7 @@ minetest.register_node("tubelib:distributor", {
 		inv:set_size('green', 6)
 		inv:set_size('red', 6)
 		inv:set_size('blue', 6)
+		meta:set_string("item_counter", minetest.serialize({red=0, green=0, blue=0, yellow=0}))
 	end,
 
 	on_receive_fields = on_receive_fields,
@@ -442,6 +466,15 @@ tubelib.register_node("tubelib:distributor", {"tubelib:distributor_active"}, {
 			local meta = minetest.get_meta(pos)
 			local running = meta:get_int("running")
 			return tubelib.statestring(running)
+		elseif topic == "filter" then
+			return change_filter_settings(pos, payload.slot, payload.val)
+		elseif topic == "counter" then
+			local meta = minetest.get_meta(pos)
+			return minetest.deserialize(meta:get_string("item_counter")) or 
+					{red=0, green=0, blue=0, yellow=0}
+		elseif topic == "clear_counter" then
+			local meta = minetest.get_meta(pos)
+			meta:set_string("item_counter", minetest.serialize({red=0, green=0, blue=0, yellow=0}))
 		else
 			return "unsupported"
 		end

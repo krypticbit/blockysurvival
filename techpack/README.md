@@ -1,4 +1,4 @@
-# TechPack V1.05
+# TechPack V1.10
 
 TechPack, a Mining, Crafting, &amp; Farming Modpack for Minetest.
 
@@ -9,8 +9,11 @@ TechPack is a collection of following Mods:
 * tubelib, a Mod for item exchange via lumber tubes and wireless message communication between nodes.
 * tubelib_addons1, a Tubelib extension with mining, farming, and crafting nodes
 * tubelib_addons2, a Tubelib extension with control nodes
+* tubelib_addons3, a Tubelib extension with high performance nodes
 * gravelsieve, a Mod to sieve ores from gravel.
 * smartline, a Mod with small and smart sensors, actors and controllers.
+* safer_lua, a subset of the language Lua for safe and secure Lua sandboxes
+* SaferLua Controller - a controller to be programmed in LUA
 
 **A TechPack Tutorial is available as ![Wiki](https://github.com/joe7575/techpack/wiki)**
 
@@ -28,7 +31,7 @@ TechPack provides:
 - Several lamp nodes in different colors (can be switched on/off)
 - a Quarry node to dig for stones and other ground nodes
 - a Harvester node to chop wood, leaves and crops
-- a Grinder node to grind cobble stone to gravel
+- a Grinder node to grind all kinds of cobblestone to gravel, gravel to sand, and sand to clay
 - a Gravelsieve node to sieve ores from gravel
 - an Autocrafter node for automated crafting of tools and items
 - a Fermenter node to produce Bio Gas from leaves
@@ -48,6 +51,7 @@ TechPack provides:
   - sending commands and alarms
   - sending mails or chat messages
   - output on a display
+- a Controller to be programmed in Lua
 - a Signal Tower node showing machine states
 - a Display node for text outputs of the Controller
 
@@ -78,3 +82,8 @@ Gravelsieve optional: moreores, hopper, pipeworks
 - 2018-03-29  V1.03  * Area protected chest added to tubelib_addons1
 - 2018-03-31  V1.04  * Maintenance, minor issues, Unifieddyes support for Color Lamp, Street Lamp added
 - 2018-04-27  V1.05  * Ceiling lamp added, further improvements
+- 2018-06-09  V1.06  * Recipes with API to grinder added
+- 2018-06-17  V1.07  * Tube placement completely reworked
+- 2018-06-22  V1.08  * Lua Controller and SaferLua added
+- 2018-07-22  V1.09  * Item counters for Pusher/Distributor and tubelib commands for Autocrafter added
+- 2018-08-08  V1.10  * tubelib_addon3 with high performance nodes added

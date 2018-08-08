@@ -23,13 +23,14 @@ local Version = minetest.deserialize(storage:get_string("Version")) or 1
 local Number2Pos = minetest.deserialize(storage:get_string("Number2Pos")) or {}
 
 local function update_mod_storage()
+	minetest.log("action", "[Tubelib] Store data...")
 	storage:set_string("NextNumber", minetest.serialize(NextNumber))
 	storage:set_string("Version", minetest.serialize(Version))
 	storage:set_string("Number2Pos", minetest.serialize(Number2Pos))
 	storage:set_string("Key2Number", nil) -- not used any more 
 	-- store data each hour
 	minetest.after(60*60, update_mod_storage)
-	print("[Tubelib] Data stored")
+	minetest.log("action", "[Tubelib] Data stored")
 end
 
 minetest.register_on_shutdown(function()
@@ -92,6 +93,20 @@ local function generate_Key2Number()
 		key = get_key_str(item.pos)
 		Key2Number[key] = num
 	end
+end
+
+local function not_protected(pos, placer_name, clicker_name)
+	local meta = minetest.get_meta(pos)
+	if meta then
+		local cached_name = meta:get_string("tubelib_cached_name")
+		if placer_name and (placer_name == cached_name or not minetest.is_protected(pos, placer_name)) then
+			meta:set_string("tubelib_cached_name", placer_name)
+			if clicker_name == nil or not minetest.is_protected(pos, clicker_name) then
+				return true
+			end
+		end
+	end
+	return false
 end
 
 -------------------------------------------------------------------
@@ -159,7 +174,7 @@ end
 -- Node construction/destruction functions
 -------------------------------------------------------------------
 	
--- Add node to the tubelib lists and update the tube surrounding.
+-- Add node to the tubelib lists.
 -- Function determines and returns the node position number,
 -- needed for message communication.
 function tubelib.add_node(pos, name)
@@ -169,8 +184,6 @@ function tubelib.add_node(pos, name)
 		pos = pos, 
 		name = name,
 	}
-	-- update surrounding tubes
-	tubelib.update_tubes(pos)
 	return number
 end
 
@@ -205,11 +218,16 @@ end
 function tubelib.register_node(name, add_names, node_definition)
 	tubelib_NodeDef[name] = node_definition
 	-- store facedir table for all known node names
-	tubelib.knownNodes[name] = true
 	Name2Name[name] = name
 	for _,n in ipairs(add_names) do
-		tubelib.knownNodes[n] = true
 		Name2Name[n] = name
+	end
+	if node_definition.on_pull_item or node_definition.on_push_item or 
+			node_definition.is_pusher then
+		tubelib.KnownNodes[name] = true
+		for _,n in ipairs(add_names) do
+			tubelib.KnownNodes[n] = true
+		end
 	end
 end
 
@@ -221,11 +239,9 @@ function tubelib.send_message(numbers, placer_name, clicker_name, topic, payload
 	for _,num in ipairs(string_split(numbers, " ")) do
 		if Number2Pos[num] and Number2Pos[num].name then
 			local data = Number2Pos[num]
-			if placer_name and not minetest.is_protected(data.pos, placer_name) then
-				if clicker_name == nil or not minetest.is_protected(data.pos, clicker_name) then
-					if tubelib_NodeDef[data.name] and tubelib_NodeDef[data.name].on_recv_message then
-						tubelib_NodeDef[data.name].on_recv_message(data.pos, topic, payload)
-					end
+			if not_protected(data.pos, placer_name, clicker_name) then
+				if tubelib_NodeDef[data.name] and tubelib_NodeDef[data.name].on_recv_message then
+					tubelib_NodeDef[data.name].on_recv_message(data.pos, topic, payload)
 				end
 			end
 		end
@@ -282,6 +298,20 @@ function tubelib.unpull_items(pos, side, items, player_name)
 	return false
 end
 	
+function tubelib.pull_stack(pos, side, player_name)
+	local npos, facedir = get_neighbor_pos(pos, side)
+	if npos == nil then return end
+	local nside, node = get_node_side(npos, facedir)
+	local name = Name2Name[node.name]
+	if tubelib_NodeDef[name] then
+		if tubelib_NodeDef[name].on_pull_stack then
+			return tubelib_NodeDef[name].on_pull_stack(npos, nside, player_name)
+		elseif tubelib_NodeDef[name].on_pull_item then
+			return tubelib_NodeDef[name].on_pull_item(npos, nside, player_name)
+		end
+	end
+	return nil
+end
 
 -------------------------------------------------------------------
 -- Server side helper functions
@@ -361,6 +391,20 @@ function tubelib.get_num_items(meta, listname, num)
 		end
 	end
 	return nil
+end
+
+function tubelib.get_stack(meta, listname)
+	local inv = meta:get_inventory()
+	local item = tubelib.get_item(meta, listname)
+	if item and inv:contains_item(listname, item) then
+		-- try to remove a complete stack
+		item:set_count(98)
+		local taken = inv:remove_item(listname, item)
+		-- add the already removed
+		taken:set_count(taken:get_count() + 1)
+		return taken
+	end
+	return item 
 end
 
 -- Return "full", "loaded", or "empty" depending

@@ -42,7 +42,8 @@ end
 
 local function is_leaves(name)
 	return tubelib_addons1.FarmingNodes[name] ~= nil  and
-	       tubelib_addons1.FarmingNodes[name].leaves == true
+	       (tubelib_addons1.FarmingNodes[name].leaves == true or
+		minetest.get_node_group(name, "leaves") > 0)
 end
 
 local function allow_metadata_inventory_put(pos, listname, index, stack, player)
@@ -268,6 +269,7 @@ minetest.register_node("tubelib_addons1:fermenter_top", {
 	paramtype2 = "facedir",
 	groups = {crumbly=0, not_in_creative_inventory=1},
 	is_ground_content = false,
+	pointable = false,
 })
 
 minetest.register_craftitem("tubelib_addons1:biogas", {

@@ -1,28 +1,18 @@
 --[[
-	Tube Library
-	============
-	Modified version of Joachim Stolberg's item pusher 
+
+	Tubelib Addons 3
+	================
+
+	Copyright (C) 2018 Joachim Stolberg
+
 	LGPLv2.1+
 	See LICENSE.txt for more information
-	pusher_admin.lua:
 	
-	Simple node for fast push/pull operation of StackItems from chests or other
-	inventory/server nodes to tubes or other inventory/server nodes.
+	pusher.lua
 	
-	The Admin Pusher supports the following messages:
-	 - topic = "on", payload  = nil
-	 - topic = "off", payload  = nil
-	 - topic = "state", payload  = nil, 
-	   response is "running", "stopped", "standby", "blocked", or "not supported"
-]]--
+	A high performance pusher
 
---                 +--------+
---                /        /|
---               +--------+ |
---     IN (L) -->|        |x--> OUT (R)
---               | PUSHER | +
---               |        |/
---               +--------+
+]]--
 
 local RUNNING_STATE = 10 
 
@@ -30,10 +20,10 @@ local function switch_on(pos, node)
 	local meta = minetest.get_meta(pos)
 	local number = meta:get_string("number")
 	meta:set_int("running", RUNNING_STATE)
-	meta:set_string("infotext", "Admin Pusher "..number..": running")
-	node.name = "tubelib:pusher_admin_active"
+	meta:set_string("infotext", "HighPerf Pusher "..number..": running")
+	node.name = "tubelib_addons3:pusher_active"
 	minetest.swap_node(pos, node)
-	minetest.get_node_timer(pos):start(1)
+	minetest.get_node_timer(pos):start(2)
 	return false
 end	
 
@@ -41,8 +31,8 @@ local function switch_off(pos, node)
 	local meta = minetest.get_meta(pos)
 	local number = meta:get_string("number")
 	meta:set_int("running", tubelib.STATE_STOPPED)
-	meta:set_string("infotext", "Admin Pusher "..number..": stopped")
-	node.name = "tubelib:pusher_admin"
+	meta:set_string("infotext", "HighPerf Pusher "..number..": stopped")
+	node.name = "tubelib_addons3:pusher"
 	minetest.swap_node(pos, node)
 	minetest.get_node_timer(pos):stop()
 	return false
@@ -52,8 +42,8 @@ local function goto_standby(pos, node)
 	local meta = minetest.get_meta(pos)
 	local number = meta:get_string("number")
 	meta:set_int("running", tubelib.STATE_STANDBY)
-	meta:set_string("infotext", "Admin Pusher "..number..": standby")
-	node.name = "tubelib:pusher_admin"
+	meta:set_string("infotext", "HighPerf Pusher "..number..": standby")
+	node.name = "tubelib_addons3:pusher"
 	minetest.swap_node(pos, node)
 	minetest.get_node_timer(pos):start(20)
 	return false
@@ -63,8 +53,8 @@ local function goto_blocked(pos, node)
 	local meta = minetest.get_meta(pos)
 	local number = meta:get_string("number")
 	meta:set_int("running", tubelib.STATE_BLOCKED)
-	meta:set_string("infotext", "Admin Pusher "..number..": blocked")
-	node.name = "tubelib:pusher_admin"
+	meta:set_string("infotext", "HighPerf Pusher "..number..": blocked")
+	node.name = "tubelib_addons3:pusher"
 	minetest.swap_node(pos, node)
 	minetest.get_node_timer(pos):start(20)
 	return false
@@ -75,14 +65,15 @@ local function keep_running(pos, elapsed)
 	local number = meta:get_string("number")
 	local running = meta:get_int("running") - 1
 	local player_name = meta:get_string("player_name")
-	local items = tubelib.pull_items(pos, "L", player_name) -- <<=== tubelib
+	local items = tubelib.pull_stack(pos, "L", player_name)
 	if items ~= nil then
-		if tubelib.push_items(pos, "R", items, player_name) == false then -- <<=== tubelib
+		if tubelib.push_items(pos, "R", items, player_name) == false then
 			-- place item back
-			tubelib.unpull_items(pos, "L", items, player_name) -- <<=== tubelib
+			tubelib.unpull_items(pos, "L", items, player_name)
 			local node = minetest.get_node(pos)
 			return goto_blocked(pos, node)
 		end
+		meta:set_int("item_counter", meta:get_int("item_counter") + 1)
 		if running <= 0 then
 			local node = minetest.get_node(pos)
 			return switch_on(pos, node)
@@ -100,24 +91,25 @@ local function keep_running(pos, elapsed)
 	return true
 end
 
-minetest.register_node("tubelib:pusher_admin", {
-	description = "Tubelib Admin Pusher",
+minetest.register_node("tubelib_addons3:pusher", {
+	description = "HighPerf Pusher",
 	tiles = {
 		-- up, down, right, left, back, front
-		'tubelib_pusher1.png',
-		'tubelib_pusher1.png',
-		'tubelib_outp.png',
-		'tubelib_inp.png',
-		"tubelib_pusher1.png^[transformR180]",
-		"tubelib_pusher1.png",
+		'tubelib_pusher1.png^tubelib_addons3_node_frame4.png',
+		'tubelib_pusher1.png^tubelib_addons3_node_frame4.png',
+		'tubelib_outp.png^tubelib_addons3_node_frame4.png',
+		'tubelib_inp.png^tubelib_addons3_node_frame4.png',
+		"tubelib_pusher1.png^[transformR180]^tubelib_addons3_node_frame4.png^[transformR180]",
+		"tubelib_pusher1.png^tubelib_addons3_node_frame4.png",
 	},
 
 	after_place_node = function(pos, placer)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("player_name", placer:get_player_name())
-		local number = tubelib.add_node(pos, "tubelib:pusher_admin") -- <<=== tubelib
+		local number = tubelib.add_node(pos, "tubelib_addons3:pusher")
 		meta:set_string("number", number)
-		meta:set_string("infotext", "Admin Pusher "..number..": stopped")
+		meta:set_string("infotext", "HighPerf Pusher "..number..": stopped")
+		meta:set_int("item_counter", 0)
 	end,
 
 	on_rightclick = function(pos, node, clicker)
@@ -127,7 +119,7 @@ minetest.register_node("tubelib:pusher_admin", {
 	end,
 
 	after_dig_node = function(pos)
-		tubelib.remove_node(pos) -- <<=== tubelib
+		tubelib.remove_node(pos)
 	end,
 	
 	on_timer = keep_running,
@@ -142,12 +134,12 @@ minetest.register_node("tubelib:pusher_admin", {
 })
 
 
-minetest.register_node("tubelib:pusher_admin_active", {
-	description = "Tubelib Admin Pusher",
+minetest.register_node("tubelib_addons3:pusher_active", {
+	description = "HighPerf Pusher",
 	tiles = {
 		-- up, down, right, left, back, front
 		{
-			image = "tubelib_pusher.png",
+			image = "tubelib_addons3_pusher_active.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -157,7 +149,7 @@ minetest.register_node("tubelib:pusher_admin_active", {
 			},
 		},
 		{
-			image = "tubelib_pusher.png",
+			image = "tubelib_addons3_pusher_active.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -166,10 +158,10 @@ minetest.register_node("tubelib:pusher_admin_active", {
 				length = 2.0,
 			},
 		},
-		'tubelib_outp.png',
-		'tubelib_inp.png',
+		'tubelib_outp.png^tubelib_addons3_node_frame4.png',
+		'tubelib_inp.png^tubelib_addons3_node_frame4.png',
 		{
-			image = "tubelib_pusher.png^[transformR180]",
+			image = "tubelib_addons3_pusher_active.png^[transformR180]",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -179,7 +171,7 @@ minetest.register_node("tubelib:pusher_admin_active", {
 			},
 		},
 		{
-			image = "tubelib_pusher.png",
+			image = "tubelib_addons3_pusher_active.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -207,12 +199,18 @@ minetest.register_node("tubelib:pusher_admin_active", {
 	sounds = default.node_sound_wood_defaults(),
 })
 
---------------------------------------------------------------- tubelib
-tubelib.register_node("tubelib:pusher_admin", {"tubelib:pusher_admin_active"}, {
-	on_pull_item = nil,  		-- pusher has no inventory
-	on_push_item = nil,			-- pusher has no inventory
-	on_unpull_item = nil,		-- pusher has no inventory
-	
+minetest.register_craft({
+	output = "tubelib_addons3:pusher",
+	recipe = {
+		{"default:tin_ingot", "tubelib:pusher", ""},
+		{"tubelib:pusher", "default:gold_ingot", ""},
+		{"", "", ""},
+	},
+})
+
+tubelib.register_node("tubelib_addons3:pusher", {"tubelib_addons3:pusher_active"}, {
+	is_pusher = true,           -- is a pulling/pushing node
+
 	on_recv_message = function(pos, topic, payload)
 		local node = minetest.get_node(pos)
 		if topic == "on" then
@@ -223,9 +221,14 @@ tubelib.register_node("tubelib:pusher_admin", {"tubelib:pusher_admin_active"}, {
 			local meta = minetest.get_meta(pos)
 			local running = meta:get_int("running") or tubelib.STATE_STOPPED
 			return tubelib.statestring(running)
+		elseif topic == "counter" then
+			local meta = minetest.get_meta(pos)
+			return meta:get_int("item_counter")
+		elseif topic == "clear_counter" then
+			local meta = minetest.get_meta(pos)
+			return meta:set_int("item_counter", 0)
 		else
 			return "not supported"
 		end
 	end,
 })	
---------------------------------------------------------------- tubelib
