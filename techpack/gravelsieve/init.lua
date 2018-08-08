@@ -176,7 +176,7 @@ local function add_gravel_to_dst(meta, inv)
 	local gravel_cnt = meta:get_int("gravel_cnt") + 1
 	meta:set_int("gravel_cnt", gravel_cnt)
 
-	if (gravel_cnt % 2) == 0 then  -- gravel or sieved gravel?
+	if (gravel_cnt % 4) == 0 then  -- gravel or sieved gravel?
 		inv:add_item("dst", ItemStack("default:gravel"))        -- add to dest
 	else
 		inv:add_item("dst", ItemStack("default:sand")) -- add to dest
@@ -194,7 +194,7 @@ local function move_src2dst(meta, pos, inv, src, dst)
 					add_gravel_to_dst(meta, inv)
 				end
 			else
-				inv:add_item("dst", ItemStack("gravelsieve:sieved_gravel")) -- add to dest
+				inv:add_item("dst", ItemStack("default:sand")) -- add to dest
 			end
 			inv:remove_item("src", src)
 		end
@@ -208,7 +208,7 @@ local function sieve_node_timer(pos, elapsed)
 	local meta = minetest.get_meta(pos)
 	local inv = meta:get_inventory()
 	local gravel = ItemStack("default:gravel")
-	local gravel_sieved = ItemStack("gravelsieve:sieved_gravel")
+	local gravel_sieved = ItemStack("default:sand")
 
 	if move_src2dst(meta, pos, inv, gravel) then
 		return true
@@ -434,35 +434,21 @@ if minetest.global_exists("tubelib") then
 	})	
 end
 
-minetest.register_node("gravelsieve:sieved_gravel", {
-	description = "Sieved Gravel",
-	tiles = {"default_gravel.png"},
-	groups = {crumbly=2, falling_node=1, not_in_creative_inventory=1},
-	sounds = default.node_sound_gravel_defaults(),
-})
-
-minetest.register_node("gravelsieve:compressed_gravel", {
-	description = "Compressed Gravel",
-	tiles = {"gravelsieve_compressed_gravel.png"},
-	groups = {cracky=2, crumbly = 2, cracky = 2},
-	sounds = default.node_sound_gravel_defaults(),
-})
-
 minetest.register_craft({
 	output = "gravelsieve:sieve",
 	recipe = {
-		{"group:wood", "",                    "group:wood"},
-		{"group:wood", "default:steelblock", "group:wood"},
-		{"group:wood", "",                    "group:wood"},
+		{"group:wood", "default:steelblock",   "group:wood"},
+		{"group:wood", "default:diamondblock", "group:wood"},
+		{"group:wood", "default:steelblock",   "group:wood"},
 	},
 })
 
 minetest.register_craft({
 	output = "gravelsieve:auto_sieve",
 	recipe = {
-		{"group:wood", "gravelsieve:sieve", "group:wood"},
-		{"group:wood", "default:diamond", "group:wood"},
-		{"group:wood", "default:mese_block", "group:wood"}
+		{"default:diamondblock", "gravelsieve:sieve", "default:diamondblock"},
+		{"default:mese_block", "default:diamondblock", "default:mese_block"},
+		{"default:diamondblock", "default:mese_block", "default:diamondblock"}
 	},
 })
 
@@ -490,15 +476,5 @@ if minetest.get_modpath("hopper") and hopper ~= nil and hopper.add_container ~= 
 	})
 end
 
--- adaption to Circular Saw
-if minetest.get_modpath("moreblocks") then
-	
-	stairsplus:register_all("gravelsieve", "compressed_gravel", "gravelsieve:compressed_gravel", {
-		description="Compressed Gravel",
-		groups={cracky=2, crumbly=2, choppy=2, not_in_creative_inventory=1},
-		tiles = {"gravelsieve_compressed_gravel.png"},
-		sounds = default.node_sound_stone_defaults(),
-	})
-end
 
 
