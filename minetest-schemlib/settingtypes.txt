@@ -1,0 +1,9 @@
+#    Save interval in seconds for plan changes in manager.
+#    0 disables the interval saving
+#    Note: all modified plans will be saved on shutdown
+schemlib.save_interval (Plan manager save interval) int 10 0
+
+#    Maximum building size in nodes that are handled in interval save
+#    to avoid performance issue. 0 enables saving for all sizes.
+#    Note: all (including big) modified plans will be saved on shutdown
+schemlib.save_maxnodes (Maximum building size for autosave) int 10000 0
