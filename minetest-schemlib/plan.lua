@@ -1,6 +1,6 @@
 -- debug-print
 --local dprint = print
-local dprint = function(mg) return end
+local dprint = function() return end
 
 local save_restore = schemlib.save_restore
 local modpath = schemlib.modpath
@@ -102,7 +102,6 @@ end
 -- Adjust building size and ground info
 --------------------------------------
 function plan_class:adjust_building_info(plan_pos, node)
-	dprint("Meep : " .. dump(plan_pos))
 	-- adjust min/max position information
 	if not self.data.max_pos.y or plan_pos.y > self.data.max_pos.y then
 		self.data.max_pos.y = plan_pos.y
@@ -257,7 +256,6 @@ function plan_class:read_from_schem_file(filename)
 			self:adjust_building_info(pos, ent)
 		end
 	end
-	dprint("Loaded")
 end
 
 --------------------------------------
@@ -441,7 +439,6 @@ end
 function plan_class:get_world_pos(plan_pos, anchor_pos)
 	local apos = anchor_pos or self.data.anchor_pos
 	local pos
-	minetest.log(dump(plan_pos))
 	if self.data.mirrored then
 		pos = {x=plan_pos.x, y=plan_pos.y, z=plan_pos.z}
 		pos.x = -pos.x
@@ -514,6 +511,9 @@ end
 -- Get world minimum position relative to plan position
 --------------------------------------
 function plan_class:get_world_minp(anchor_pos)
+	if not self.data.min_pos.x or not self.data.max_pos.x then
+		return
+	end
 	local pos = self:get_world_pos(self.data.min_pos, anchor_pos)
 	local pos2 = self:get_world_pos(self.data.max_pos, anchor_pos)
 	if pos2.x < pos.x then
@@ -532,6 +532,9 @@ end
 -- Get world maximum relative to plan position
 --------------------------------------
 function plan_class:get_world_maxp(anchor_pos)
+	if not self.data.min_pos.x or not self.data.max_pos.x then
+		return
+	end
 	local pos = self:get_world_pos(self.data.max_pos, anchor_pos)
 	local pos2 = self:get_world_pos(self.data.min_pos, anchor_pos)
 	if pos2.x > pos.x then
