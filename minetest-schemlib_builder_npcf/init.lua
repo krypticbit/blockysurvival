@@ -39,7 +39,6 @@ local function get_plan_from_file(filename)
 	local plan = schemlib.plan.new()
 	plan:read_from_schem_file(filename)
 	plan:apply_flood_with_air()
-	minetest.log("Loaded plan")
 	return plan
 end
 
@@ -122,10 +121,13 @@ local function create_new_plan(self)
 		-- check for possible overlaps with other plans
 		for plan_id, meta in pairs(plan_manager.plan_meta_list) do
 			local plan_meta = plan_manager.get_plan_meta(plan_id)
-			local p = plan_meta.data.anchor_pos
-			error_pos = tmp_next_plan:check_overlap(plan_meta:get_world_minp(p), plan_meta:get_world_maxp(p), 3, chk_pos)
-			if error_pos then
-				break
+			local minp = plan_meta:get_world_minp()
+			local maxp = plan_meta:get_world_maxp()
+			if minp and maxp then
+				error_pos = tmp_next_plan:check_overlap(minp, maxp, 3, chk_pos)
+				if error_pos then
+					break
+				end
 			end
 		end
 		if not error_pos then
