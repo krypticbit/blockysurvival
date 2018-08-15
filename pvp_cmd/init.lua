@@ -12,7 +12,7 @@ end
 
 minetest.register_chatcommand("pvp", {
 	params = "",
-	description = "Toggle the pvp-mode, if it gets enable other players with pvp on can hit you.",
+	description = "Toggle the pvp-mode, if enabled other players with pvp on can hit you.",
 	privs = {},
 	func = function(name)
 		if not minetest.check_player_privs(name, {server = true}) and minetest.check_player_privs(name, {nopvp = true, server = false}) then
@@ -87,12 +87,12 @@ minetest.register_privilege("setpvp", "Lets you set the pvp-mode of other player
 minetest.register_on_punchplayer(function(player, hitter)
 	local hitter_name = hitter:get_player_name()
 	if no_pvp[hitter_name] then
-		minetest.chat_send_player(hitter_name, "Your PvP is disable, type /pvp to enable it")
+		minetest.chat_send_player(hitter_name, "Your PvP is disabled, type /pvp to enable it")
 		return true
 	end
 	local player_name = player:get_player_name()
 	if no_pvp[player_name] then
-		minetest.chat_send_player(hitter_name, player_name .. " PvP is disable, you n00bish one, type /checkpvp " .. player_name .. " before to check if their pvp is enable.")
+		minetest.chat_send_player(hitter_name, player_name .. " PvP is disabled, you n00bish one, type /checkpvp " .. player_name .. " before to see if their pvp is enabled.")
 		return true
 	end
 end)
