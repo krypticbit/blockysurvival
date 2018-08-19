@@ -2,11 +2,11 @@ local i = {}
 
 local miniboom = function(pos)
 	bPos = {x = pos.x + math.random(-9, 9), y = pos.y + math.random(-3, -1), z = pos.z + math.random(-9, 9)}
-	tnt.boom(bPos, {radius = 4})
+	tnt.boom(bPos, {radius = 4, explode_center = true})
 end
 
 local strike_pos = function(pos, radius, kill_players)
-	tnt.boom(pos, {radius=radius})
+	tnt.boom(pos, {radius = radius, explode_center = true})
 	-- Add "mini-booms" as the laser strikes for effect + more devistation
 	minetest.after(0.1, miniboom, pos)
 	minetest.after(0.25, miniboom, pos)
