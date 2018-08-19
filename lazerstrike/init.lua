@@ -5,7 +5,7 @@ local miniboom = function(pos)
 	tnt.boom(bPos, {radius = 4})
 end
 
-local strike_pos = function(pos, radius)
+local strike_pos = function(pos, radius, kill_players)
 	tnt.boom(pos, {radius=radius})
 	-- Add "mini-booms" as the laser strikes for effect + more devistation
 	minetest.after(0.1, miniboom, pos)
@@ -48,27 +48,47 @@ local strike_pos = function(pos, radius)
 		end
 	end
 	-- uses minetest.after, because :set_hp() can only be called in globalstep...
-	minetest.after(0, function()
-		for player, _ in pairs(players) do
-			player:set_hp(0)
-		end
-	end)
+	if kill_players then
+		minetest.after(0, function()
+			for player, _ in pairs(players) do
+				player:set_hp(0)
+			end
+		end)
+	end
 end
-i.strike_pos = strike_pos
 
 -- vaporises a player and empties their inventory.
 -- does this by forcing them to run /clearinv.
 -- returns true if the player existed, false if not.
-local strike_player = function(name, radius)
+local strike_player = function(name, radius, kill_players)
 	local ref = minetest.get_player_by_name(name)
 	if not ref then return false end
-
 	minetest.registered_chatcommands["clearinv"].func(name)
-	strike_pos(ref:get_pos(), radius)
+	strike_pos(ref:get_pos(), radius, kill_players)
+	-- Kill the target because they just got hit by a massive laser for crying out loud
+	if not kill_players then
+		minetest.after(0, function() ref:set_hp(0) end)
+	end
 end
-i.strike_player = strike_player
 
 minetest.register_privilege("vaporize", "Allows use of the /vaporzie command")
+
+minetest.register_chatcommand("vaporize_tame", {
+	params = "<victim>",
+	description = "Eliminates <victim> but does not hurt any other players",
+	privs = {vaporize = true},
+	func = function(name, param)
+                p = minetest.get_player_by_name(param)
+                if p then
+                        pInts = {}
+                        for i,n in pairs(p:getpos()) do pInts[i] = math.floor(n) end
+                        minetest.chat_send_all("[WARNING] Incoming Lazer Satellite Strike at " .. minetest.pos_to_string(pInts) .. " (lock: " .. param .. ")")
+                        strike_player(param, 7)
+                else
+                        return false, "No such player is online"
+                end
+        end
+})
 
 minetest.register_chatcommand("vaporize", {
 	params = "<victim>",
@@ -77,13 +97,10 @@ minetest.register_chatcommand("vaporize", {
 	func = function(name, param)
 		p = minetest.get_player_by_name(param)
 		if p then
-			if p:getpos().y < -200 then
-				return false, "Player is too deep underground! (Deeper then -200)"
-			end 
 			pInts = {}
 			for i,n in pairs(p:getpos()) do pInts[i] = math.floor(n) end
 			minetest.chat_send_all("[WARNING] Incoming Lazer Satellite Strike at " .. minetest.pos_to_string(pInts) .. " (lock: " .. param .. ")")
-			strike_player(param, 7)
+			strike_player(param, 7, true)
 		else
 			return false, "No such player is online"
 		end
