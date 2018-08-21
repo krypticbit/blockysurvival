@@ -1,11 +1,14 @@
-# Display Modpack
+# Display Modpack 
+Version 1.1.1
 
 This modpack provides mods with dynamic display. Mods are :
 
 - **display_api**: A library for adding display entities to nodes;
 - **font_api**: A library for displaying fonts on entities;
-- **ontime_clocks**: A mod providing clocks which display the ingame time;
 - **signs_api**: A library for the easy creation of signs;
+
+- **boards**: A mod providing school boards;
+- **ontime_clocks**: A mod providing clocks which display the ingame time;
 - **signs**: A mod providing signs and direction signs displaying text;
 - **signs_road**: A mod providing road signs displaying text;
 - **steles**: A mod providing stone steles with text;
@@ -19,6 +22,22 @@ For more information, see the [forum topic](https://forum.minetest.net/viewtopic
 [Bakedclay textures](https://github.com/tenplus1/bakedclay/tree/master/textures) created by tenplus1 under the MIT license.
 
 ## Changelog
+
+### 2018-07-16 (Version 1.1.1)
+
+- Boards mod added.
+
+- Bug fix in default font chosing when multiple font registered. 
+
+### 2018-07-13 (Version 1.1.0)
+
+- Font API rework introducing Font class.
+
+- Replaced default Epilepsy Font by Metro Font for licensing purposes,
+
+- Rework of all nodes displaying text accordingly to the Font API rework.
+
+As font_epilepsy mod has been replaced by font_metro mod, **don't forget to activate font_metro mod after updating** or you won't have any text displayed.
 
 ### 2018-05-30 (Version 1.0.1)
 

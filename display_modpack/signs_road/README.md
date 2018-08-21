@@ -4,7 +4,7 @@ This mod provides road signs with text display. Text is locked if area is protec
 
 For more information, see the [forum topic](https://forum.minetest.net/viewtopic.php?t=19365) at the Minetest forums.
 
-**Dependancies**: default, display\_lib, font\_lib, signs
+**Dependancies**: default, display\_lib, font\_lib, signs, bakedclay
 
 **License**: Code under LGPL, texture under CC-BY-SA
 
@@ -49,7 +49,7 @@ B = Black Dye, W = White Dye, S = Steel Ingot
 Two kinds of signs, normal and direction signs :
 
 		W B -		W B S
-		S S S		S S - 
+		S S S		S S -
 		- - -		- - -
 
 W = White Dye, B = Black Dye, S = Steel Ingot
@@ -73,4 +73,3 @@ Two kinds of signs, normal and direction signs :
 		- - -		- - -
 
 Y = Yellow Dye, B = Black Dye, S = Steel Ingot
-

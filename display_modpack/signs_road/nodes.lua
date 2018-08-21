@@ -27,7 +27,7 @@ local models = {
 		width = 14/16,
 		height = 12/16,
 		entity_fields = {
-			resolution = { x = 11, y = 5.5 },
+			size = { x = 14/16, y = 10/16 },
 			maxlines = 3,
 			color = "#fff",
 		},
@@ -39,13 +39,12 @@ local models = {
 			inventory_image = "signs_road_blue_1.png",
 		},
 	},
-
 	red_street_sign = {
 		depth = 1/16,
 		width = 1,
 		height = 7/16,
 		entity_fields = {
-			resolution = { x = 8, y = 4 },
+			size = { x = 1, y = 4/16 },
 			maxlines = 1,
 			color = "#000",
 		},
@@ -62,7 +61,7 @@ local models = {
 		width = 1,
 		height = 7/16,
 		entity_fields = {
-			resolution = { x = 9, y = 5.5 },
+			size = { x = 1, y = 6/16 },
 			maxlines = 2,
 			color = "#000",
 		},
@@ -79,7 +78,7 @@ local models = {
 		width = 1,
 		height = 7/16,
 		entity_fields = {
-			resolution = { x = 9, y = 5.5 },
+			size = { x = 1, y = 6/16 },
 			maxlines = 2,
 			color = "#fff",
 		},
@@ -96,7 +95,7 @@ local models = {
 		width = 1,
 		height = 7/16,
 		entity_fields = {
-			resolution = { x = 9, y = 5.5 },
+			size = { x = 1, y = 6/16 },
 			maxlines = 2,
 			color = "#000",
 		},
@@ -113,7 +112,8 @@ local models = {
 		width = 1,
 		height = 0.5,
 		entity_fields = {
-			resolution = { x = 7, y = 5 },
+			aspect_ratio = 3/4,
+			size = { x = 1, y = 3/16 },
 			maxlines = 1,
 			color = "#000",
 		},
@@ -133,7 +133,8 @@ local models = {
 		width = 1,
 		height = 0.5,
 		entity_fields = {
-			resolution = { x = 7, y = 5 },
+			aspect_ratio = 3/4,
+			size = { x = 1, y = 3/16 },
 			maxlines = 1,
 			color = "#000",
 		},
@@ -158,7 +159,6 @@ local models = {
 		entity_fields = {
 			right = -3/32,
 			size = { x = 12/16, y = 6/16 },
-			resolution =  { x = 9, y = 5.5 },
 			maxlines = 2,
 			color = "#fff",
 		},
@@ -182,7 +182,6 @@ local models = {
 		entity_fields = {
 			right = 3/32,
 			size = { x = 12/16, y = 6/16 },
-			resolution = { x = 9, y = 5.5 },
 			maxlines = 2,
 			color="#fff",
 		},
@@ -208,7 +207,6 @@ local models = {
 		entity_fields = {
 			right = -3/32,
 			size = { x = 12/16, y = 6/16 },
-			resolution = { x = 9, y = 5.5 },
 			maxlines = 2,
 			color = "#000",
 		},
@@ -232,7 +230,6 @@ local models = {
 		entity_fields = {
 			right = 3/32,
 			size = { x = 12/16, y = 6/16 },
-			resolution = { x = 9, y = 5.5 },
 			maxlines = 2,
 			color = "#000",
 		},
@@ -248,7 +245,7 @@ local models = {
 			selection_box = { type = "fixed", fixed = { -7/16, -7/32, 0.5, 0.5, 7/32, 7/16 } },
 			collision_box = { type = "fixed", fixed = { -7/16, -7/32, 0.5, 0.5, 7/32, 7/16 } },
 			groups = { not_in_creative_inventory = 1 },
-			drop = "signs_road:yellow_left_sign",
+			drop = "signs_road:yellow_right_sign",
 		},
 	},
 	white_right_sign = {
@@ -258,7 +255,6 @@ local models = {
 		entity_fields = {
 			right = -3/32,
 			size = { x = 12/16, y = 6/16 },
-			resolution = { x = 9, y = 5.5 },
 			maxlines = 2,
 			color = "#000",
 		},
@@ -282,7 +278,6 @@ local models = {
 		entity_fields = {
 			right = 3/32,
 			size = { x = 12/16, y = 6/16 },
-			resolution = { x = 9, y = 5.5 },
 			maxlines = 2,
 			color = "#000",
 		},
@@ -347,6 +342,60 @@ local color_blacktext = {
  	{"yellow", "Yellow"},
 	{"grey", "Grey"},
 }
+
+for _, color in pairs(color) do
+
+	local models_color = {
+		[("large_street_sign_" .. color[1])] = {
+		  depth = 1/16,
+		  width = 64/16,
+		  height = 12/16,
+		  entity_fields = {
+		    resolution = { x = 2.5, y = 1.5 },
+		    maxlines = 1,
+		    color = "#FFFFFF",
+		  },
+		  node_fields = {
+		     visual_scale = 1,
+		    description = color[2] .. " Street Banner",
+		    tiles = {"baked_clay_" .. color[1] ..".png"},
+		    inventory_image = "signs_road_" .. color[1] ..".png",
+				groups = {large_banner = 1},
+		  },
+		},
+	}
+
+	for name, model in pairs(models_color) do
+	signs_api.register_sign("signs_road", name, model)
+	end
+end
+
+for _, color_blacktext in pairs(color_blacktext) do
+	local models_colorblacktext = {
+		[("large_street_sign_" .. color_blacktext[1])] = {
+			depth = 1/16,
+			width = 64/16,
+			height = 12/16,
+			entity_fields = {
+				resolution = { x = 2.5, y = 1.5 },
+				maxlines = 1,
+				color = "#000000",
+			},
+			node_fields = {
+				 visual_scale = 1,
+				description = color_blacktext[2] .. " Street Banner",
+				tiles = {"baked_clay_" .. color_blacktext[1] ..".png"},
+				inventory_image = "signs_road_" .. color_blacktext[1] ..".png",
+				groups = {large_banner = 1},
+			},
+		},
+	}
+
+	for name, model in pairs(models_colorblacktext) do
+	signs_api.register_sign("signs_road", name, model)
+	end
+end
+
 
 for _, color in pairs(color) do
 
