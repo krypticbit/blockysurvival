@@ -368,7 +368,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "extra:onion_rings ",
 	recipe = {
-         {'extra:cottonseed_oil', 'extra:onion_slice', ''},
+         {'extra:cottonseed_oil', 'extra:onion_slice', 'extra:onion_slice'},
          {'extra:onion_slice', 'extra:onion_slice', 'extra:onion_slice'},
          {'extra:onion_slice', 'extra:onion_slice', 'extra:onion_slice'},
       },
