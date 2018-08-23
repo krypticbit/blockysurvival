@@ -10,10 +10,6 @@ minetest.item_place = function (itemstack, placer, pointed_thing, param2)
 		minetest.chat_send_player(player_name, "You cannot place lava over -5m", true)
 		return itemstack
 	end
-	if minetest.is_protected(pointed_thing.above, player_name) then
-		minetest.record_protection_violation(pointed_thing.above, player_name)
-		return itemstack
-	end
 	return oldplace(itemstack, placer, pointed_thing, param2)
 end
 
