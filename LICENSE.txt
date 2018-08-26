@@ -1,4 +1,4 @@
 This modpack contains many mods, each with it's own license. If a
-LICENSE.txt is not provided in a mod folder, then the mod is not to be
-copied, modified, or distributed without the explicit permission
-of the mod writer (BillyS)
+mod is not licensed, (LICENSE.txt is not provided in the mod's folder)
+then the mod is not to be copied, modified, or distributed without the
+explicit permission of the mod writer (BillyS)
