@@ -2,6 +2,8 @@
 -- See LICENSE.txt for details.
 
 local modpath = minetest.get_modpath(minetest.get_current_modname())
+local updatestep = .5
+local current_step = 0
 
 -- Handle mod security if needed
 local ie, req_ie = _G, minetest.request_insecure_environment
@@ -107,6 +109,12 @@ local stepnum = 0
 minetest.register_globalstep(function(dtime) return irc2.step(dtime) end)
 
 function irc2.step()
+    if current_step + dtime < updatestep then
+        current_step = current_step + dtime
+        return
+    else
+        current_step = 0
+    end
 	if stepnum == 3 then
 		if irc2.config.auto_connect then
 			irc2.connect()
