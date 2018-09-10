@@ -4,3 +4,4 @@ default
 moreblocks
 lib_chatcmdbuilder
 areas
+technic_chests

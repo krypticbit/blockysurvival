@@ -58,6 +58,12 @@ end
 
 minetest.override_item("default:chest_open", {allow_metadata_inventory_take = allowWithProtection, allow_metadata_inventory_put = allowWithProtection, allow_metadata_inventory_move = allowMoveWithProtection})
 
+-- Technic chests
+local materials = {"iron", "copper", "silver", "gold", "mithril"}
+for _, material in ipairs(materials) do
+    minetest.override_item("technic:" .. material .. "_chest", {allow_metadata_inventory_take = allowWithProtection, allow_metadata_inventory_put = allowWithProtection, allow_metadata_inventory_move = allowMoveWithProtection})
+end
+
 -- Trap stone
 minetest.register_node("main:fake_stone", {
 	description = "Fake Stone",
