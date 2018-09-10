@@ -103,7 +103,7 @@ smartshop.receive_fields=function(player,pressed)
 					smartshop.add_storage[pname]=nil
 				end
 			end, pname)
-			minetest.chat_send_player(pname, "Open a storage owned by you")
+			minetest.chat_send_player(pname, "Open a storage owned by you.")
 		return
 		elseif pressed.customer then
 			return smartshop.showform(pos,player,true)
@@ -112,20 +112,20 @@ smartshop.receive_fields=function(player,pressed)
 			local pname=player:get_player_name()
 			if meta:get_int("sellall")==0 then
 				meta:set_int("sellall",1)
-				minetest.chat_send_player(pname, "Sell your stock and give line")
+				minetest.chat_send_player(pname, "Sell your stock and give lines.")
 			else
 				meta:set_int("sellall",0)
-				minetest.chat_send_player(pname, "Sell your stock only")
+				minetest.chat_send_player(pname, "Sell your stock only.")
 			end
 		elseif pressed.tooglelime then
 			local meta=minetest.get_meta(pos)
 			local pname=player:get_player_name()
 			if meta:get_int("type")==0 then
 				meta:set_int("type",1)
-				minetest.chat_send_player(pname, "Your stock is limeted")
+				minetest.chat_send_player(pname, "Your stock is limited.")
 			else
 				meta:set_int("type",0)
-				minetest.chat_send_player(pname, "Your stock is unlimeted")
+				minetest.chat_send_player(pname, "Your stock is unlimited.")
 			end
 		elseif not pressed.quit then
 			local n=1
@@ -151,22 +151,22 @@ smartshop.receive_fields=function(player,pressed)
 						minetest.chat_send_player(pname, "Error: Your inventory is full, exchange aborted.")
 						return
 					elseif not pinv:contains_item("main", pay) then
-						minetest.chat_send_player(pname, "Error: You dont have enough in your inventory to buy this, exchange aborted.")
+						minetest.chat_send_player(pname, "Error: You don't have enough in your inventory to buy this, exchange aborted.")
 						return
 					elseif type==1 and inv:room_for_item("main", pay)==false then
-						minetest.chat_send_player(pname, "Error: The owners stock is full, cant receive, exchange aborted.")
+						minetest.chat_send_player(pname, "Error: The owner's stock is full, can't receive, exchange aborted.")
 					else
 						if inv:contains_item("main", stack) then
 						elseif sellall==1 and inv:contains_item("give" .. n, stack) then
 							stack_to_use="give" .. n
 						else
-							minetest.chat_send_player(pname, "Error: The owners stock is end.")
+							minetest.chat_send_player(pname, "Error: The owner's stock is exhausted.")
 							check_storage=1
 						end
 						if not check_storage then
 							for i=0,32,1 do
 								if pinv:get_stack("main", i):get_name()==inv:get_stack("pay" .. n,1):get_name() and pinv:get_stack("main",i):get_wear()>0 then
-									minetest.chat_send_player(pname, "Error: your item is used")
+									minetest.chat_send_player(pname, "Error: Your item is used/damaged.")
 									return
 								end
 							end
@@ -218,7 +218,7 @@ smartshop.receive_fields=function(player,pressed)
 									end
 									if check_storage then
 										check_storage=nil
-										minetest.chat_send_player(pname, "Try again, stock just refilled")
+										minetest.chat_send_player(pname, "Try again, stock just refilled.")
 									end
 								else
 									break
@@ -251,7 +251,7 @@ smartshop.update_info=function(pos)
 	local gve=0
 	if meta:get_int("sellall")==1 then gve=1 end
 	if meta:get_int("type")==0 then
-		meta:set_string("infotext","(Smartshop by " .. owner ..") Stock is unlimeted")
+		meta:set_string("infotext","(Smartshop by " .. owner ..") Stock is unlimited")
 		return false
 	end
 	local name=""
@@ -298,7 +298,7 @@ smartshop.update=function(pos,stat)
 	local spos=minetest.pos_to_string(pos)
 	for _, ob in ipairs(minetest.get_objects_inside_radius(pos, 2)) do
 		if ob and ob:get_luaentity() and ob:get_luaentity().smartshop and ob:get_luaentity().pos==spos then
-			ob:remove()	
+			ob:remove()
 		end
 	end
 	if stat=="clear" then return end
@@ -412,7 +412,7 @@ smartshop.showform=function(pos,player,re)
 			gui=gui .."tooltip[tsend;Send payments to " ..  title .."]"
 		else
 			gui=gui .."tooltip[tsend;Send payments to storage]"
-			
+
 		end
 
 		if trefill then
@@ -429,8 +429,8 @@ smartshop.showform=function(pos,player,re)
 
 
 		if creative==1 then
-			gui=gui .."label[0.5,-0.4;Your stock is unlimeted becaouse you have creative or give]"
-			.."button[6,1;2.2,1;tooglelime;Toogle limit]"
+			gui=gui .."label[0.5,-0.4;Your stock is unlimited because you have either creative or give.]"
+			.."button[6,1;2.2,1;tooglelime;Toggle limit]"
 		end
 		gui=gui
 		.."list[nodemeta:" .. spos .. ";main;0,2;8,4;]"
@@ -617,7 +617,7 @@ smartshop.showform2=function(pos,player)
 	if a then
 		if not a.pos then return end
 		if vector.distance(a.pos, pos)>smartshop.max_wifi_distance then
-			minetest.chat_send_player(uname, "Too far, max distance " .. smartshop.max_wifi_distance)
+			minetest.chat_send_player(uname, "Too far, max distance is " .. smartshop.max_wifi_distance)
 		end
 		local meta=minetest.get_meta(a.pos)
 		local p=smartshop.strpos(pos)
@@ -626,7 +626,7 @@ smartshop.showform2=function(pos,player)
 		elseif a.refill and p then
 			meta:set_string("item_refill",p)
 		end
-		minetest.chat_send_player(uname, "smartshop connected")
+		minetest.chat_send_player(uname, "Smartshop connected")
 		smartshop.add_storage[uname]=nil
 	end
 end
