@@ -66,7 +66,7 @@ minetest.register_node( "titanium:titanium_tv_1", {
 	tile_images = { "titanium_tv_1.png" },
 	is_ground_content = true,
 	groups = {snappy=1,bendy=2,cracky=1,melty=2,level=2},
-	drop = 'titanium:screen_1',
+	drop = 'titanium:titanium_tv_1',
 	light_source = 8,
 })
 
@@ -75,28 +75,28 @@ minetest.register_node( "titanium:titanium_tv_2", {
 	tile_images = { "titanium_tv_2.png" },
 	is_ground_content = true,
 	groups = {snappy=1,bendy=2,cracky=1,melty=2,level=2},
-	drop = 'titanium:screen_1',
+	drop = 'titanium:titanium_tv_1',
 	light_source = 8,
 })
 
 minetest.register_abm(
-        {nodenames = {"titanium:titanium_tv_1", "titanium:titanium_tv_2"}, 
+        {nodenames = {"titanium:titanium_tv_1", "titanium:titanium_tv_2"},
         interval = 12,
         chance = 1,
         action = function(pos)
 		local i = math.random(1,2)
-        
+
 			if i== 1 then
 				minetest.add_node(pos,{name="titanium:titanium_tv_1"})
 			end
-		
+
 			if i== 2 then
 				minetest.add_node(pos,{name="titanium:titanium_tv_2"})
 			end
-			
-       end 
+
+       end
 })
-			
+
 ---
 ---tools
 ---
@@ -111,7 +111,8 @@ minetest.register_tool("titanium:sword", {
 			fleshy={times={[1]=2.00, [2]=0.60, [3]=0.20}, uses=100, maxlevel=2},
 			snappy={times={[2]=0.60, [3]=0.20}, uses=100, maxlevel=1},
 			choppy={times={[3]=0.70}, uses=100, maxlevel=0}
-		}
+		},
+		damage_groups = {fleshy=10.00}
 	}
 })
 
@@ -123,7 +124,8 @@ minetest.register_tool("titanium:axe", {
 		groupcaps={
 			choppy={times={[1]=2.50, [2]=1.50, [3]=1.00}, uses=150, maxlevel=2},
 			fleshy={times={[2]=1.00, [3]=0.50}, uses=120, maxlevel=1}
-		}
+		},
+		damage_groups = {fleshy=10.00}
 	},
 })
 
@@ -134,10 +136,11 @@ minetest.register_tool("titanium:shovel", {
 		max_drop_level=1,
 		groupcaps={
 			crumbly={times={[1]=1.0, [2]=0.50, [3]=0.50}, uses=150, maxlevel=3}
-		}
+		},
+		damage_groups = {fleshy=4.00}
 	},
 })
-	
+
 	minetest.register_tool("titanium:pick", {
 	description = "Titanium Pickaxe",
 	inventory_image = "titanium_pick.png",
@@ -148,7 +151,8 @@ minetest.register_tool("titanium:shovel", {
 			cracky={times={[1]=2.4, [2]=1.0, [3]=0.6}, uses=160, maxlevel=3},
 			crumbly={times={[1]=2.4, [2]=1.0, [3]=0.6}, uses=160, maxlevel=3},
 			snappy={times={[1]=2.4, [2]=1.0, [3]=0.6}, uses=160, maxlevel=3}
-		}
+		},
+		damage_groups = {fleshy=4.00}
 	},
 })
 
@@ -262,37 +266,38 @@ minetest.register_ore({
 	y_max = -1500,
 })
 
-	------------------------------------------------------
-	-- Version 4------------------------------------------
+------------------------------------------------------
+-- Version 4------------------------------------------
 
-	minetest.register_node("titanium:light", {
-		drawtype = "glasslike",
-		tile_images = {"titanium.png"},
-		inventory_image = minetest.inventorycube("titanium.png"),
-		paramtype = "light",
-		walkable = false,
-		is_ground_content = true,
-		light_propagates = true,
-		sunlight_propagates = true,
-		light_source = 11,
-		selection_box = {
-			type = "fixed",
-			fixed = {0, 0, 0, 0, 0, 0},
-		},
-	})
+minetest.register_node("titanium:light", {
+	drawtype = "glasslike",
+	tile_images = {"titanium.png"},
+	inventory_image = minetest.inventorycube("titanium.png"),
+	paramtype = "light",
+	walkable = false,
+	is_ground_content = true,
+	light_propagates = true,
+	sunlight_propagates = true,
+	light_source = 11,
+	selection_box = {
+		type = "fixed",
+		fixed = {0, 0, 0, 0, 0, 0},
+	},
+})
 
-	minetest.register_tool("titanium:sam_titanium", {
-		description = "Google Glass Titanium",
-		inventory_image = "sam_titanium.png",
-		wield_image = "sam_titanium.png",
-		tool_capabilities = {
-			max_drop_level=1,
-			groupcaps={
-					cracky={times={[2]=1.20, [3]=0.80}, uses=5, maxlevel=1}
-			}
-		},
-	})
+minetest.register_tool("titanium:sam_titanium", {
+	description = "Google Glass Titanium",
+	inventory_image = "sam_titanium.png",
+	wield_image = "sam_titanium.png",
+	tool_capabilities = {
+		max_drop_level=1,
+		groupcaps={
+				cracky={times={[2]=1.20, [3]=0.80}, uses=5, maxlevel=1}
+		}
+	},
+})
 
+if enable_walking_light ~= false then
 	minetest.register_craft({
 		output = 'titanium:sam_titanium',
 		recipe = {
@@ -302,5 +307,3 @@ minetest.register_ore({
 		}
 	})
 end
-
-print("[Titanium Mod] Loaded! By Aqua! Subscribe to my YouTube: youtube.com/theshaunzero!")
