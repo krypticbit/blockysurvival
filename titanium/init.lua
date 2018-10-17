@@ -296,14 +296,3 @@ minetest.register_tool("titanium:sam_titanium", {
 		}
 	},
 })
-
-if enable_walking_light ~= false then
-	minetest.register_craft({
-		output = 'titanium:sam_titanium',
-		recipe = {
-			{'titanium:titanium_plate', 'default:torch', 'titanium:titanium_plate'},
-			{'titanium:glass', 'default:mese_crystal', 'titanium:glass'},
-			{'', '', ''},
-		}
-	})
-end
